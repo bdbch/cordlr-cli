@@ -3,15 +3,10 @@ const bot = new Discord.Client();
 const config = {
   bot: require('./bot/config/bot.json')
 }
+const BotApplication = require('./bot/lib/bot.js')
 
 bot.on('ready', () => {
-  console.log('Ready');
-})
-
-bot.on('message', (message) => {
-  if(message.content === 'ping') {
-    message.reply('pong');
-  }
+  new BotApplication(bot)
 })
 
 bot.login(config.bot.token)
