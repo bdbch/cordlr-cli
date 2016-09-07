@@ -6,7 +6,7 @@ TBC
 ## Roadmap
 
 * Commands
-  * Selfassignable Eoles
+  * Selfassignable Roles
 
 
 ## Contribution
