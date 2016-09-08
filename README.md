@@ -10,15 +10,23 @@
   * Selfassignable Roles
   * Caniuse Commands
   * Devdocs Documentation Commands
+  * Banning and Kicking
+
 * Integrations
  * Github
-  * Commit History (via Hooks)
-  * Pull Request Notification (via Hooks)
-  * Comment Notifications (via Hooks)
+   * Commit History (via Hooks)
+   * Pull Request Notification (via Hooks)
+   * Comment Notifications (via Hooks)
  * Gitlab
   * see **Github**
  * Bitbucket
   * see **Github**
+ 
+* Features
+ * Backend Webinterface with Discord Login
+  * shows server stats
+  * ban history
+  * kick history
 
 ## Contribution
 
