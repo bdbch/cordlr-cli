@@ -7,16 +7,16 @@
 ## Roadmap
 
 * Commands
-  * Selfassignable Roles
-  * Caniuse Commands
-  * Devdocs Documentation Commands
-  * Banning and Kicking
+ * Selfassignable Roles
+ * Caniuse Commands
+ * Devdocs Documentation Commands
+ * Banning and Kicking
 
 * Integrations
  * Github
-   * Commit History (via Hooks)
-   * Pull Request Notification (via Hooks)
-   * Comment Notifications (via Hooks)
+  * Commit History (via Hooks)
+  * Pull Request Notification (via Hooks)
+  * Comment Notifications (via Hooks)
  * Gitlab
   * see **Github**
  * Bitbucket
