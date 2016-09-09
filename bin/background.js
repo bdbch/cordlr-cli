@@ -8,7 +8,7 @@ const dargs = require('dargs');
 
 // Constants
 const CHILD_OPTS = { cwd: __dirname, detached: true };
-const TMP_DIR = path.normalize(os.tmpdir());
+const PID_FILE = path.join(os.tmpdir(), 'cordlr');
 
 /**
  * background.js
@@ -27,7 +27,7 @@ function start (cb) {
   // See if server already running.
   fs.access(PID_FILE, function (err) {
     // If file exists, it means bot is running.
-    if (!err) return cb(new Error(`A bot named "${name}" is already running.`));
+    if (!err) return cb(new Error(`PID file exists (Bot is already running)`));
     if (err.code !== 'ENOENT') return cb(err);
 
     // Spawn background process.
@@ -47,19 +47,19 @@ function stop (cb) {
 
   // Get PID and exit if it is invalid.
   fs.readFile(PID_FILE, function(err, pid) {
-    if (err) return cb(new Error(`No bot named "${name}" is currently running.`));
+    if (err) return cb(new Error(`PID file doesn't exist.  (Bot wasn't running)`));
 
     // Kill the process using it.
     child.spawn('kill', [pid]).stdout.on('end', function(err) {
       if (err) return cb(err);
 
       // Delete PID file.
-      fs.unlink(pidFile, cb);
+      fs.unlink(PID_FILE, cb);
     });
   });
 }
 
 // Simple restart function.
 function restart (cb) {
-  stop(name, () => start(name, cb));
+  return stop(() => start(cb));
 }

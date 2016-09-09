@@ -10,9 +10,7 @@ const chalk = require('chalk');
 const USAGE = fs.readFileSync(path.join(__dirname, 'usage.txt')).toString();
 const VERSION = require('../package.json').version;
 const CLI = {
-  boolean: ['help', 'version'],
-  string: ['stop', 'start', 'restart'],
-  default: { stop: 'cordlr', start: 'cordlr', restart: 'cordlr' }
+  boolean: ['help', 'version', 'stop', 'start', 'restart']
 };
 
 /**
@@ -37,9 +35,9 @@ function main () {
   if (flag.version) return console.log(VERSION);
 
   // Handling background process flags.
-  if (flag.stop) return background.stop(flag.stop, logger('Successfully stopped.'));
-  if (flag.start) return background.start(flag.start, logger('Successfully started.'));
-  if (flag.restart) return background.restart(flag.restart, logger('Successfully restarted.'));
+  if (flag.stop) return background.stop(logger('Successfully stopped.'));
+  if (flag.start) return background.start(logger('Successfully started.'));
+  if (flag.restart) return background.restart(logger('Successfully restarted.'));
 
   // TODO: Use `request` to interact with the HTTP server that cordlr creates.
   // ...
