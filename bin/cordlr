@@ -4,14 +4,12 @@ const request = require('http').request;
 const background = require('./background');
 const path = require('path');
 const fs = require('fs');
-const chalk = require('chalk');
+const logger = require('./logger');
 
 // Constants
 const USAGE = fs.readFileSync(path.join(__dirname, 'usage.txt')).toString();
 const VERSION = require('../package.json').version;
-const CLI = {
-  boolean: ['help', 'version', 'stop', 'start', 'restart']
-};
+const CLI = {boolean: ['help', 'version', 'stop', 'start', 'restart']};
 
 /**
  * The cordlr CLI tool.
@@ -45,11 +43,3 @@ function main () {
 
 // Execute immidately.
 main();
-
-// Log an (err, data) tuple.
-function logger (message) {
-  return function (err) {
-    if (err) console.log(chalk.red(err.name + ':'), err.message);
-    else console.log(chalk.green(message));
-  }
-}

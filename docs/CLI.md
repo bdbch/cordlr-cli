@@ -20,8 +20,12 @@ By default, this would run inside the main channel.
 
 Flags let you set options for the bot.
 
+ - `--start`: Start a background process for the bot.
+ - `--stop`: Stop the background process.
+ - `--restart`: Restart the background process.
  - `--version`: This package's version.
  - `--help`: Display help page.
+
 
 ## Installation
 
@@ -33,6 +37,6 @@ $ npm install -g devcord/cordlr
 
 ## Manually Starting
 
-Instead of using `cordlr start` to create a background process, you can use `cordlr-create` to manually create the bot.
+Alternative to using `cordlr --start` to create a new background process, you can use `cordlr-client` instead to manually create the bot.  The background processes are just a wrapper over this.
 
-The background process code executes `cordlr-create` internally, so they behave the same in that regard.
+The background process code executes `cordlr-client` internally, so they behave the same in that regard.
