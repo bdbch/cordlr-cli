@@ -1,0 +1,5 @@
+
+$ cordlr <action> [...args]
+
+Visit the "docs/" on GitHub for more info.
+(https://github.com/Devcord/cordlr/tree/master/docs)

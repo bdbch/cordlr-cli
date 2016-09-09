@@ -1,0 +1,57 @@
+#!/usr/bin/env node
+const minimist = require('minimist');
+const request = require('http').request;
+const background = require('./background');
+const path = require('path');
+const fs = require('fs');
+const chalk = require('chalk');
+
+// Constants
+const USAGE = fs.readFileSync(path.join(__dirname, 'usage.txt')).toString();
+const VERSION = require('../package.json').version;
+const CLI = {
+  boolean: ['help', 'version'],
+  string: ['stop', 'start', 'restart'],
+  default: { stop: 'cordlr', start: 'cordlr', restart: 'cordlr' }
+};
+
+/**
+ * The cordlr CLI tool.
+ *
+ * Follows usage like:
+ * ```sh
+ * $ cordlr <action> [...args]
+ * ```
+ *
+ * More in "docs/CLI.md".
+ */
+
+function main () {
+  // The CLI input.
+  const flag = minimist(process.argv.slice(2), CLI);
+  const args = flag._;
+  let action = args.shift() || 'help';
+
+  // Handling typical flags.
+  if (flag.help) return console.log(USAGE);
+  if (flag.version) return console.log(VERSION);
+
+  // Handling background process flags.
+  if (flag.stop) return background.stop(flag.stop, logger('Successfully stopped.'));
+  if (flag.start) return background.start(flag.start, logger('Successfully started.'));
+  if (flag.restart) return background.restart(flag.restart, logger('Successfully restarted.'));
+
+  // TODO: Use `request` to interact with the HTTP server that cordlr creates.
+  // ...
+}
+
+// Execute immidately.
+main();
+
+// Log an (err, data) tuple.
+function logger (message) {
+  return function (err) {
+    if (err) console.log(chalk.red(err.name + ':'), err.message);
+    else console.log(chalk.green(message));
+  }
+}

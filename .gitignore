@@ -1,3 +1,4 @@
 node_modules
-
-bot/config/bot.json
+.cordlrrc*
+log
+*.pid
