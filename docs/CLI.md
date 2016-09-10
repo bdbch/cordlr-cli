@@ -8,24 +8,7 @@ Allows you to execute bot actions from your terminal using the [Service API](/SE
 $ cordlr <action> [...args]
 ```
 
-For example:
-
-```
-$ cordlr clear 10
-```
-
 By default, this would run inside the main channel.
-
-## Flags
-
-Flags let you set options for the bot.
-
- - `--start`: Start a persistent process for the bot.
- - `--stop`: Stop the persistent process.
- - `--restart`: Restart the persistent process.
- - `--version`: This package's version.
- - `--help`: Display help page.
-
 
 ## Installation
 
@@ -33,6 +16,29 @@ Install this module globally off github using npm to get the CLI:
 
 ```
 $ npm install -g devcord/cordlr
+```
+
+## Configuring
+
+Create a `.cordlrrc` file where you are going to run it, and supply some options:
+
+ - `token`: The Token ID of the bot, so it can be logged in.
+ - `prefix`: The command prefix inside chat (Defaults to `$`).
+ - `actions`: Where your action files are located (Defaults to `cordlr/lib/actions`).
+
+Example:
+```json
+{
+  "token": "...",
+  "prefix": "-",
+  "actions": "./my-custom-actions"
+}
+```
+
+Alternatively you can use `cordlr-client` and supply command-line options:
+
+```sh
+$ cordlr-client --token=... --prefix="%"
 ```
 
 ## Manually Starting
