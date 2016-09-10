@@ -20,7 +20,9 @@ $ npm install -g devcord/cordlr
 
 ## Configuring
 
-Create a `.cordlrrc` file where you are going to run it, and supply some options:
+This bot uses [`rc`](https://npmjs.com/rc) so you can supply configurations in mutliple locations.
+
+Most simply, create a `.cordlrrc` file where you are going to run it, and supply some options:
 
  - `token`: The Token ID of the bot, so it can be logged in.
  - `prefix`: The command prefix inside chat (Defaults to `$`).
