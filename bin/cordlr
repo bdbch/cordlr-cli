@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 const minimist = require('minimist');
 const request = require('http').request;
-const background = require('./background');
+const persist = require('./persist');
 const path = require('path');
 const fs = require('fs');
-const logger = require('./logger');
+const log = require('log-cb');
 
 // Constants
 const USAGE = fs.readFileSync(path.join(__dirname, 'usage.txt')).toString();
@@ -32,10 +32,10 @@ function main () {
   if (flag.help) return console.log(USAGE);
   if (flag.version) return console.log(VERSION);
 
-  // Handling background process flags.
-  if (flag.stop) return background.stop(logger('Successfully stopped.'));
-  if (flag.start) return background.start(logger('Successfully started.'));
-  if (flag.restart) return background.restart(logger('Successfully restarted.'));
+  // Handling persist process flags.
+  if (flag.stop) return persist.stop(log('Stopped bot.'));
+  if (flag.start) return persist.start(log('Started bot.'));
+  if (flag.restart) return persist.restart(log('Restarted bot.'));
 
   // TODO: Use `request` to interact with the HTTP server that cordlr creates.
   // ...

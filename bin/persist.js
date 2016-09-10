@@ -1,4 +1,4 @@
-const background = module.exports = {};
+const persist = module.exports = {};
 const noop = function noop () {};
 const child = require('child_process');
 const fs = require('fs');
@@ -8,29 +8,29 @@ const dargs = require('dargs');
 
 // Constants
 const CHILD_OPTS = { cwd: __dirname, detached: true };
-const PID_FILE = path.join(os.tmpdir(), 'cordlr');
+const PID_FILE = path.join(os.tmpdir(), 'cordlr.pid');
 
 /**
- * background.js
+ * persist.js
  *
- * Run `main.js` under controlled background process.
+ * Run `main.js` under controlled, persistent process.
  */
 
-background.start = start;
-background.stop = stop;
-background.restart = restart;
+persist.start = start;
+persist.stop = stop;
+persist.restart = restart;
 
-// Start bot in background with `options`.
+// Start persistent process.
 function start (cb) {
   cb = cb || noop;
 
-  // See if server already running.
+  // See if bot is already running.
   fs.access(PID_FILE, function (err) {
-    // If file exists, it means bot is running.
+    // If no error happened, means PID file exists.
     if (!err) return cb(new Error(`PID file exists (Bot is already running)`));
     if (err.code !== 'ENOENT') return cb(err);
 
-    // Spawn background process.
+    // Spawn process.
     const bg = child.spawn('node', ['main.js'], CHILD_OPTS);
     bg.unref();
 
@@ -41,7 +41,7 @@ function start (cb) {
   });
 }
 
-// Kill bot in background.
+// End the running persistent process.
 function stop (cb) {
   cb = cb || noop;
 
@@ -59,7 +59,7 @@ function stop (cb) {
   });
 }
 
-// Simple restart function.
+// Wrapper for resetting.
 function restart (cb) {
   return stop(() => start(cb));
 }
