@@ -2,6 +2,7 @@
 
 Thanks for taking the time to contribute.  Here are a few guideline:
 
+## Pull Requests & Commits
 * Please stick to our codestyle guidelines as long as we don't have linters setup.
   * Use 2 Spaces as Indentation 
   * Parentheses should always have one space in front. Example: `function Demo () { }`
@@ -11,11 +12,24 @@ Thanks for taking the time to contribute.  Here are a few guideline:
     * Use `const` if value is not going to change
     * Use `let` if value is going to change in this block
 * Pullrequests should always include this
-  * Title: `[IDEA] Lorem Ipsum Dolor`
+  * Title: `[PROPOSAL] Lorem Ipsum Dolor`
     * `[TAG]` - Use from following tags
-      * `IDEA` - Idea for the bot, never discussed before
       * `PROPOSAL` - Code proposals
       * `FEATURE` - New code feature
       * `FIX` - Fix for a broken feature
       * `COMM` - Comment Commit
     * Description of what you did
+
+## Issues
+* Issues should always include this
+  * Title: `[BUG] Lorem Ipsum Dolor`
+    * `[TAG]` - Use from following tags
+      * `BUG` - Report of broken feature
+      * `IDEA` - New idea for the bot
+      * `DISS` - Discussion of already discussed features
+      * `SUPP` - Support Issues
+      * `ETC` - Other issues
+  * Content:
+    * What didn't worked? Describe what you did and what happened?
+    * What command lead to the issue?
+    * If possible, add the console log
