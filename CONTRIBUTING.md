@@ -26,9 +26,11 @@ Thanks for taking the time to contribute.  Here are a few guideline:
     * `[TAG]` - Use from following tags
       * `BUG` - Report of broken feature
       * `IDEA` - New idea for the bot
+      * `FEAT` - New feature for the bot
       * `DISS` - Discussion of already discussed features
       * `SUPP` - Support Issues
       * `ETC` - Other issues
+      * `TASK` - Some task which still needs to be done
   * Content:
     * What didn't worked? Describe what you did and what happened?
     * What command lead to the issue?
