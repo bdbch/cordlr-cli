@@ -26,7 +26,8 @@
     "tape": "^4.6.0"
   },
   "scripts": {
-    "test": "tape test.js | tap-spec"
+    "test": "tape test.js | tap-spec",
+    "start": "node index.js"
   },
   "bugs": {
     "url": "https://github.com/Devcord/cordlr/issues"
