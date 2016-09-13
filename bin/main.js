@@ -4,6 +4,7 @@ const minimist = require('minimist');
 const rc = require('rc');
 const log = require('log-cb');
 const path = require('path');
+const userConfig = require('../config');
 
 /**
  * Create bot using command line.
@@ -12,7 +13,8 @@ const path = require('path');
 // Get options and set defaults
 const options = rc('cordlr', {
   actions: path.join(__dirname, '../lib/actions'),
-  prefix: '$'
+  prefix: '$',
+  token: userConfig.token
 });
 
 // Create bot.
