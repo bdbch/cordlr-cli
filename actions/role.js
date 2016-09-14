@@ -29,38 +29,51 @@ function role (bot, options) {
     const name = args[1]
     const author = message.member
 
-    // Get roles of guild where the message was sent, exit if invalid.
-    let role
-    if (name) role = message.guild.roles.find('name', name)
-    if (method !== 'list' && (!role || publicRoles.indexOf(role.name) < 0)) {
-      return message.reply('use a valid and assignable role. (See `$role list`)')
-    }
-
     // Handle command method
     switch (method) {
-      case 'add': return addRole(role, author, message)
-      case 'remove': return removeRole(role, author, message)
+      case 'add': return addRole(name, author, message)
+      case 'remove': return removeRole(name, author, message)
       case 'list': return listRoles(message)
       default: return message.reply(`invalid method "${method}".`)
     }
   }
 
-  // Adds author to a role.
-  function addRole (role, author, message) {
+  // Adds author to a role
+  function addRole (name, author, message) {
+    const role = getRole(name, message);
+    if (!role) return;
+
+    // Add it to the author
     author.addRole(role).then(() => {
-      message.reply(`added to **${role.name}**`)
-    });
+      message.reply(`added to **${name}**`)
+    })
   }
 
-  // Removes author from a role.
-  function removeRole (role, author, message) {
+  // Removes author from a role
+  function removeRole (name, author, message) {
+    const role = getRole(name, message);
+    if (!role) return;
+
+    // Remove it from the author
     author.removeRole(role).then(() => {
-      message.reply(`removed from **${role.name}**`)
-    });
+      message.reply(`removed from **${name}**`)
+    })
   }
 
-  // Lists public roles.
+  // Lists public roles
   function listRoles (message) {
     message.reply(`public roles: ${publicRolesList}`);
+  }
+
+  // Validate a role name
+  function getRole (name, message) {
+    // Get roles of guild where the message was sent, exit if invalid
+    let role;
+    if (name) role = message.guild.roles.find('name', name);
+    if (!role || publicRoles.indexOf(role.name) < 0) {
+      message.reply('use a valid and assignable role. (See `$role list`)');
+      return null;
+    }
+    return role;
   }
 }
