@@ -12,7 +12,8 @@ const path = require('path');
 // Get options and set defaults
 const options = rc('cordlr', {
   actions: path.join(__dirname, '../actions'),
-  prefix: '$'
+  prefix: '$',
+  publicRoles: []
 });
 
 // Print help screen.
