@@ -7,7 +7,6 @@ module.exports = {
     'MANAGE_CHANNELS',
     'MANAGE_GUILD',
     'MANAGE_MESSAGES',
-    'MENTION_EVERYONE',
     'MUTE_MEMBERS',
     'DEAFEN_MEMBERS',
     'MOVE_MEMBERS',
