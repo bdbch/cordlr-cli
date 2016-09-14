@@ -1,45 +1,35 @@
 #!/usr/bin/env node
+const cordlr = require('../');
 const minimist = require('minimist');
-const request = require('http').request;
-const persist = require('./persist');
-const path = require('path');
-const fs = require('fs');
+const rc = require('rc');
 const log = require('log-cb');
-
-// Constants
-const USAGE = fs.readFileSync(path.join(__dirname, 'usage.txt')).toString();
-const VERSION = require('../package.json').version;
-const CLI = {boolean: ['help', 'version', 'stop', 'start', 'restart']};
+const path = require('path');
 
 /**
- * The cordlr CLI tool.
- *
- * Follows usage like:
- * ```sh
- * $ cordlr <action> [...args]
- * ```
- *
- * More in "docs/CLI.md".
+ * Create bot using command line.
  */
 
-function main () {
-  // The CLI input.
-  const flag = minimist(process.argv.slice(2), CLI);
-  const args = flag._;
-  let action = args.shift() || 'help';
+// Get options and set defaults
+const options = rc('cordlr', {
+  actions: path.join(__dirname, '../actions'),
+  prefix: '$'
+});
 
-  // Handling typical flags.
-  if (flag.help) return console.log(USAGE);
-  if (flag.version) return console.log(VERSION);
-
-  // Handling persist process flags.
-  if (flag.stop) return persist.stop(log('Stopped bot.'));
-  if (flag.start) return persist.start(log('Started bot.'));
-  if (flag.restart) return persist.restart(log('Restarted bot.'));
-
-  // TODO: Use `request` to interact with the HTTP server that cordlr creates.
-  // ...
+// Print help screen.
+if (options.help) {
+  const fs = require('fs');
+  console.log(fs.readFileSync(path.join(__dirname, 'usage.txt')));
+  process.exit(0);
 }
 
-// Execute immidately.
-main();
+// Print version screen.
+if (options.version) {
+  console.log(require('../package.json').version);
+  process.exit(0);
+}
+
+// Create bot.
+const bot = cordlr(options);
+
+// Log done message.
+bot.on('done', log('Loaded and authenticated the bot.'));
