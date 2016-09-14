@@ -2,6 +2,7 @@
 
 # Documentation
 
- - [Service API](/SERVICE.md)
  - [CLI](/CLI.md)
- - [Contributing]('../CONTRIBUTING.md')
+ - [Configuring](CONFIG.md)
+ - [Service API](/SERVICE.md)
+ - [Contributing](../CONTRIBUTING.md)
