@@ -1,5 +1,8 @@
 # cordlr
 
+Add this bot to your server
+https://discordapp.com/oauth2/authorize?client_id=223165778357256194&scope=bot&permissions=0x00000008
+
 ## Installation
 * `npm install`
 * `node index.js`
@@ -7,7 +10,7 @@
 ## Roadmap
 
 ### Commands
-* [ ] Selfassignable Roles
+* [x] Selfassignable Roles
 * [ ] Caniuse Commands
 * [ ] Devdocs Documentation Commands
 * [ ] Banning and Kicking
@@ -21,12 +24,20 @@
   * [ ] see **Github**
 * [ ] Bitbucket
   * [ ] see **Github**
- 
+
 ### Features
 * [ ] Backend Webinterface with Discord Login
   * [ ] shows server stats
   * [ ] ban history
   * [ ] kick history
+
+## Command List
+
+| Command | Description |
+| ------- | ----------- |
+| $role add "Role Name" | Adds Role "Role Name" to your User |
+| $role remove "Role Name" | Removes Role "Role Name" from your User |
+| $role list | Lists all available roles |
 
 ## Contribution
 

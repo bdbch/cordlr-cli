@@ -12,11 +12,12 @@
   "dependencies": {
     "chalk": "^1.1.3",
     "dargs": "^5.0.1",
-    "discord.js": "^9.0.2",
+    "discord.js": "^9.2.0",
     "log-cb": "^0.2.1",
     "minimist": "^1.2.0",
     "rc": "^1.1.6",
-    "replace-ext": "^1.0.0"
+    "replace-ext": "^1.0.0",
+    "spawn-args": "^0.2.0"
   },
   "engines": {
     "node": ">=4"
@@ -27,7 +28,7 @@
   },
   "scripts": {
     "test": "tape test.js | tap-spec",
-    "start": "node index.js"
+    "start": "node bin/main.js"
   },
   "bugs": {
     "url": "https://github.com/Devcord/cordlr/issues"
