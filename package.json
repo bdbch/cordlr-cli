@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "license": "GPL-3.0",
   "repository": "devcord/cordlr",
-  "main": "lib",
+  "main": "index.js",
   "bin": "./bin/cordlr",
   "dependencies": {
     "chalk": "^1.1.3",
