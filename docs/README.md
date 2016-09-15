@@ -1,7 +1,7 @@
 # Documentation
 
-- ### [Setup](/setup/)
-  - [Configuration](/setup/configuration.md)
+- [**Setup**](/setup/)
+  - [**Configuration**](/setup/configuration.md)
   - [CLI](/setup/cli.md)
 - ### [Commands](/commands/)
   - [General](/commands/general.md)
