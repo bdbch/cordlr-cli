@@ -2,7 +2,12 @@
 
 # Documentation
 
- - [CLI](/CLI.md)
- - [Configuring](CONFIG.md)
- - [Service API](/SERVICE.md)
- - [Contributing](../CONTRIBUTING.md)
+- Setup
+  - [Configuration](setup/config.md)
+  - [CLI](setup/cli.md)
+- Commands
+  - [General](commands/general.md)
+- API
+  - [Service API](api/service.md)
+- Project
+  - [Contributing](../CONTRIBUTING.md)
