@@ -2,33 +2,17 @@
 
 [**Add the official Cordlr to your server**](https://discordapp.com/oauth2/authorize?client_id=223165778357256194&scope=bot&permissions=0x00000008)
 
+## Requirements
+
+Devcord requires ES2015. So the latest, suggested versions are all versions up from `6.x`
+
 ## Installation
-* `npm install`
-* `node index.js`
+* The bot can be installed per Github via `npm install -g devcord/cordlr`
+* Install node packages via `npm install`
+* to be done
 
-## Roadmap
-
-### Commands
-* [x] Selfassignable Roles
-* [ ] Caniuse Commands
-* [ ] Devdocs Documentation Commands
-* [ ] Banning and Kicking
-
-### Integrations
-* [ ] Github
-  * [ ] Commit History (via Hooks)
-  * [ ] Pull Request Notification (via Hooks)
-  * [ ] Comment Notifications (via Hooks)
-* [ ] Gitlab
-  * [ ] see **Github**
-* [ ] Bitbucket
-  * [ ] see **Github**
-
-### Features
-* [ ] Backend Webinterface with Discord Login
-  * [ ] shows server stats
-  * [ ] ban history
-  * [ ] kick history
+## Forever
+If you want to restart the server automatically, you can use [`forever`](https://www.npmjs.com/package/forever)
 
 ## Command List
 
