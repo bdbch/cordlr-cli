@@ -3,7 +3,7 @@
 # Documentation
 
 - Setup
-  - [Configuration](/setup/config.md)
+  - [Configuration](/setup/configuration.md)
   - [CLI](/setup/cli.md)
 - Commands
   - [General](/commands/general.md)
