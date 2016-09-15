@@ -1,13 +1,13 @@
 # Documentation
 
-- [**Setup**](/setup/)
+- [**Setup**](setup/)
   - [Configuration](/setup/configuration.md)
   - [CLI](/setup/cli.md)
-- [**Commands**](/commands/)
+- [**Commands**](commands/)
   - [General](/commands/general.md)
   - [Role](/commands/role.md)
   - [Role](/commands/role.md)
-- [**API**](/api/)
+- [**API**](api/)
   - [Service API](/api/service.md)
 - **Project**
   - [Contributing](../CONTRIBUTING.md)
