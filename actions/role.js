@@ -17,7 +17,7 @@ role.usage = 'role <method> [name]'
  */
 
 function role (bot, config) {
-  // Publically avaiable roles
+  // Admin permissions, can't assign roles with these
   const adminPerms = config.adminPerms
 
   // Command handler
@@ -64,8 +64,6 @@ function role (bot, config) {
     .filter(role => validateRole(role))
     .map(role => role.name).join(', ') || '(none)'
 
-    console.log(message.guild.roles)
-
     message.reply(`available roles: ${availableRoles}`)
   }
 
@@ -93,9 +91,7 @@ function role (bot, config) {
         !role ||
         role.hasPermission(perm) ||
         role.name === '@everyone'
-      ) {
-        return false
-      }
+      ) return false
     }
     return true
   }
