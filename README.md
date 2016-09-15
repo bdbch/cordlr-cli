@@ -1,7 +1,6 @@
 # cordlr
 
-Add this bot to your server
-https://discordapp.com/oauth2/authorize?client_id=223165778357256194&scope=bot&permissions=0x00000008
+[**Add the official Cordlr to your server**](https://discordapp.com/oauth2/authorize?client_id=223165778357256194&scope=bot&permissions=0x00000008)
 
 ## Installation
 * `npm install`
