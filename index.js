@@ -1,51 +1,52 @@
-module.exports = create;
-const DiscordClient = require('discord.js').Client;
-const minimist = require('minimist');
-const mapDir = require('./lib/map-dir');
-const log = require('log-cb');
+module.exports = create
+const DiscordClient = require('discord.js').Client
+const minimist = require('minimist')
 const spawnargs = require('spawn-args')
+const requireGlob = require('require-glob')
+const path = require('path')
+const log = require('log-cb')
 
 /**
  * Create the cordlr bot.
  */
 
-function create (options) {
-  options = options || {};
-  const actionPath = options.actions;
-  const prefix = options.prefix;
-
+function create (config = {}) {
   // Create bot.
-  const bot = new DiscordClient(options.client);
+  const bot = new DiscordClient(config.client)
+  const actionsGlob = config.actions
+  const prefix = config.prefix
+  const base = path.dirname(config.config)
 
-  // Setup the command handling.
-  bot.once('ready', function () {
-    // Load ALL the actions for the bot.
-    mapDir(actionPath, function (err, actions) {
-      if (err) throw err;
+  bot.once('ready', () => {
+    // Require the actions provided
+    requireGlob(actionsGlob, { base: base }).then(actions => {
+      const actionNames = Object.keys(actions)
 
-      // Handle messages
-      bot.on('message', function (message) {
+      // Handle messages to run actions
+      bot.on('message', message => {
         if (!message.content.indexOf(prefix) && message.channel.type !== 'dm') {
           // Parse the name and arguments.
           const raw = message.content.slice(prefix.length)
-          const rawArgs = spawnargs(raw, { removequotes: 'always' })
-          const args = rawArgs.slice(1)
-          const name = rawArgs[0]
+          const args = spawnargs(raw, { removequotes: 'always' })
+          const flags = minimist(args)
+          const name = args.shift()
 
-          // Run it.
-          if(actions.has(name)) {
-            const action = actions.get(name)(bot, options);
-            if (action) action(message, args);
+          // Run it, if it exists.
+          if (actionNames.indexOf(name) > -1) {
+            const action = actions[name](bot, config)
+            if (action) action(message, args, flags)
           }
         }
-      });
+      })
 
-      // Emit "done"
-      bot.emit('done');
-    });
-  });
+      // Emit "done" for setup complete
+      bot.emit('done')
+    }, log.err())
+  })
 
-  bot.login(options.token);
+  // Attempt to log the bot in after handler set
+  bot.login(config.token)
 
-  return bot;
+  // Pass bot on for custom handlers
+  return bot
 }

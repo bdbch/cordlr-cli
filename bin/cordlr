@@ -1,9 +1,8 @@
 #!/usr/bin/env node
-const cordlr = require('../');
-const minimist = require('minimist');
-const rc = require('rc');
-const log = require('log-cb');
-const path = require('path');
+const cordlr = require('../')
+const rc = require('rc')
+const log = require('log-cb')
+const path = require('path')
 
 /**
  * Create bot using command line.
@@ -11,25 +10,25 @@ const path = require('path');
 
 // Get options and set defaults
 const options = rc('cordlr', {
-  actions: path.join(__dirname, '../actions'),
+  actions: path.join(__dirname, '../actions/*.js'),
   prefix: '$'
-});
+})
 
 // Print help screen.
 if (options.help) {
-  const fs = require('fs');
-  console.log(fs.readFileSync(path.join(__dirname, 'usage.txt')));
-  process.exit(0);
+  const fs = require('fs')
+  console.log(fs.readFileSync(path.join(__dirname, 'usage.txt')))
+  process.exit(0)
 }
 
 // Print version screen.
 if (options.version) {
-  console.log(require('../package.json').version);
-  process.exit(0);
+  console.log(require('../package.json').version)
+  process.exit(0)
 }
 
 // Create bot.
-const bot = cordlr(options);
+const bot = cordlr(options)
 
 // Log done message.
-bot.on('done', log('Loaded and authenticated the bot.'));
+bot.on('done', log('Loaded and authenticated the bot.'))
