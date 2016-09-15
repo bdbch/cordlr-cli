@@ -1,7 +1,6 @@
 module.exports = role
-const log = require('log-cb');
 
-role.command = 'role';
+role.command = 'role'
 role.usage = 'role <method> [name]'
 
 /**
@@ -17,10 +16,9 @@ role.usage = 'role <method> [name]'
  * $role list
  */
 
-function role (bot, options) {
+function role (bot, config) {
   // Publically avaiable roles
-  const publicRoles = options.publicRoles;
-  const publicRolesList = publicRoles.join(', ') || '(none)';
+  const adminPerms = config.adminPerms
 
   // Command handler
   return function run (message, args) {
@@ -40,8 +38,8 @@ function role (bot, options) {
 
   // Adds author to a role
   function addRole (name, author, message) {
-    const role = getRole(name, message);
-    if (!role) return;
+    const role = getRole(name, message)
+    if (!role) return
 
     // Add it to the author
     author.addRole(role).then(() => {
@@ -51,8 +49,8 @@ function role (bot, options) {
 
   // Removes author from a role
   function removeRole (name, author, message) {
-    const role = getRole(name, message);
-    if (!role) return;
+    const role = getRole(name, message)
+    if (!role) return
 
     // Remove it from the author
     author.removeRole(role).then(() => {
@@ -62,18 +60,43 @@ function role (bot, options) {
 
   // Lists public roles
   function listRoles (message) {
-    message.reply(`public roles: ${publicRolesList}`);
+    var availableRoles = message.guild.roles
+    .filter(role => validateRole(role))
+    .map(role => role.name).join(', ') || '(none)'
+
+    console.log(message.guild.roles)
+
+    message.reply(`available roles: ${availableRoles}`)
   }
 
-  // Validate a role name
+  // Get role from a name
   function getRole (name, message) {
-    // Get roles of guild where the message was sent, exit if invalid
-    let role;
-    if (name) role = message.guild.roles.find('name', name);
-    if (!role || publicRoles.indexOf(role.name) < 0) {
-      message.reply('use a valid and assignable role. (See `$role list`)');
-      return null;
+    if (!name) {
+      message.reply('please enter a role name')
+      return null
     }
-    return role;
+
+    // Get roles of guild where the message was sent, exit if invalid
+    const role = message.guild.roles.find('name', name)
+
+    // Verify permissions
+    if (!validateRole(role)) return null
+
+    // Return otherwise
+    return role
+  }
+
+  // Validate role
+  function validateRole (role) {
+    for (const perm of adminPerms) {
+      if (
+        !role ||
+        role.hasPermission(perm) ||
+        role.name === '@everyone'
+      ) {
+        return false
+      }
+    }
+    return true
   }
 }
