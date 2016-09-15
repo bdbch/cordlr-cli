@@ -12,7 +12,20 @@ const path = require('path');
 // Get options and set defaults
 const options = rc('cordlr', {
   actions: path.join(__dirname, '../actions'),
-  prefix: '$'
+  prefix: '$',
+  adminPerms: [
+    'KICK_MEMBERS',
+    'BAN_MEMBERS',
+    'ADMINISTRATOR',
+    'MANAGE_CHANNELS',
+    'MANAGE_GUILD',
+    'MANAGE_MESSAGES',
+    'MUTE_MEMBERS',
+    'DEAFEN_MEMBERS',
+    'MOVE_MEMBERS',
+    'MANAGE_NICKNAMES',
+    'MANAGE_ROLES_OR_PERMISSIONS'
+  ]
 });
 
 // Print help screen.
