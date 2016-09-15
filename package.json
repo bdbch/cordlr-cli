@@ -30,7 +30,7 @@
   },
   "scripts": {
     "test": "tape test.js | tap-spec",
-    "start": "node bin/main.js"
+    "start": "./bin/cordlr"
   },
   "files": [
     "lib",
