@@ -7,6 +7,7 @@
 Devcord requires ES2015. So the latest, suggested versions are all versions up from `6.x`
 
 ## Installation
+* The bot can be installed per Github via `npm install -g devcord/cordlr`
 * Install node packages via `npm install`
 * to be done
 
