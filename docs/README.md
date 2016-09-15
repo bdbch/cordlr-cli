@@ -3,11 +3,11 @@
 # Documentation
 
 - Setup
-  - [Configuration](setup/config.md)
-  - [CLI](setup/cli.md)
+  - [Configuration](/setup/config.md)
+  - [CLI](/setup/cli.md)
 - Commands
-  - [General](commands/general.md)
+  - [General](/commands/general.md)
 - API
-  - [Service API](api/service.md)
+  - [Service API](/api/service.md)
 - Project
   - [Contributing](../CONTRIBUTING.md)
