@@ -6,7 +6,7 @@
   - [CLI](setup/cli.md)
   - [Deployment](setup/deployment.md)
 - [**Commands**](commands/)
-  - [General](commands/general.md)
+  - [General](commands/)
   - [Role](commands/role.md)
   - [Github](commands/github.md)
   - [Trello](commands/trello.md)
