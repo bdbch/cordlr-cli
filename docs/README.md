@@ -1,8 +1,10 @@
 # Documentation
 
 - [**Setup**](setup/)
+  - [Installation](setup/installation.md)
   - [Configuration](setup/configuration.md)
   - [CLI](setup/cli.md)
+  - [Deployment](setup/deployment.md)
 - [**Commands**](commands/)
   - [General](commands/general.md)
   - [Role](commands/role.md)
@@ -13,6 +15,7 @@
   - [Service API](api/service.md)
 - **Project**
   - [Contributing](../CONTRIBUTING.md)
+  - [Roadmap](../projects/1)
 
 ----
 
