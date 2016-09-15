@@ -1,105 +1,98 @@
-const userConfig = require('../../config')
+module.exports = role
 
-module.exports = role;
+role.command = 'role'
+role.usage = 'role <method> [name]'
 
-function role (bot, options) {
-  // When discord emits 'ready'.
-  // Used to handle things outside
-  // of the running function.
+/**
+ * Actions for managing user roles.
+ *
+ * Adding role to a user:
+ * $role add <name>
+ *
+ * Removing role from user:
+ * $role remove <name>
+ *
+ * Listing roles:
+ * $role list
+ */
 
+function role (bot, config) {
+  // Admin permissions, can't assign roles with these
+  const adminPerms = config.adminPerms
+
+  // Command handler
   return function run (message, args) {
-    const action = args[0]
-    const value = args[1]
+    // Dissect input arguments
+    const method = args[0]
+    const name = args[1]
     const author = message.member
-    let requestedRole = false
-    let selectedRole = false
 
-    if(action) {
-      const roles = message.guild.roles
-
-      if(value) {
-        requestedRole = value
-        selectedRole = roles.find('name', requestedRole)
-      }
-
-      switch (action) {
-        case 'add':
-          if(selectedRole) {
-            addToRole(message, author, requestedRole, selectedRole)
-          } else {
-            message.reply('Sorry, but the role **' + requestedRole + '** does not exist.')
-          }
-          break
-        case 'remove':
-          if(selectedRole) {
-            removeFromRole(message, author, requestedRole, selectedRole)
-          } else {
-            message.reply('Sorry, but the role **' + requestedRole + '** does not exist.')
-          }
-          break
-        case 'list':
-          listRoles(message)
-          break
-        default:
-          message.reply('Invalid argument **' + action + '**')
-      }
-    } else {
-      message.reply('Sorry, but you have to provide a valid role!')
-    }
-  }
-}
-
-function isRoleAssignable (selectedRole) {
-  let assignable = true
-  for(i = 0; i < userConfig.adminPerms.length; i++) {
-    if(selectedRole.hasPermission(userConfig.adminPerms[i])) {
-      assignable = false
+    // Handle command method
+    switch (method) {
+      case 'add': return addRole(name, author, message)
+      case 'remove': return removeRole(name, author, message)
+      case 'list': return listRoles(message)
+      default: return message.reply(`invalid method "${method}".`)
     }
   }
 
-  return assignable
-}
+  // Adds author to a role
+  function addRole (name, author, message) {
+    const role = getRole(name, message)
+    if (!role) return
 
-function addToRole (message, author, requestedRole, selectedRole) {
-  const assignable = isRoleAssignable(selectedRole)
-  if(!assignable) {
-    message.reply('Sorry, but you are not allowed to assign yourself **' + requestedRole + '**')
-    return false
+    // Add it to the author
+    author.addRole(role).then(() => {
+      message.reply(`added to **${name}**`)
+    })
   }
 
-  message.reply('Added **' + author.user.username + '** to **' + requestedRole + '**')
-  author.addRole(selectedRole.id)
-}
+  // Removes author from a role
+  function removeRole (name, author, message) {
+    const role = getRole(name, message)
+    if (!role) return
 
-function removeFromRole (message, author, requestedRole, selectedRole) {
-  const assignable = isRoleAssignable(selectedRole)
-  if(!assignable) {
-    message.reply('Sorry, but you are not allowed to remove yourself from **' + requestedRole + '**')
-    return false
+    // Remove it from the author
+    author.removeRole(role).then(() => {
+      message.reply(`removed from **${name}**`)
+    })
   }
 
-  message.reply('Removed **' + author.user.username + '** from **' + requestedRole + '**')
-  author.removeRole(selectedRole.id)
-}
+  // Lists public roles
+  function listRoles (message) {
+    var availableRoles = message.guild.roles
+    .filter(role => validateRole(role))
+    .map(role => role.name).join(', ') || '(none)'
 
-function listRoles (message) {
-  const roles = message.guild.roles
-  let availableRoles = []
+    message.reply(`available roles: ${availableRoles}`)
+  }
 
-  availableRoles = roles.map(function(role) {
-    for(i = 0; i < userConfig.adminPerms.length; i++) {
-      if(!role.hasPermission(userConfig.adminPerms[i])) {
-        return role.name
-      } else {
-        return false
-      }
+  // Get role from a name
+  function getRole (name, message) {
+    if (!name) {
+      message.reply('please enter a role name')
+      return null
     }
-  })
 
-  let availableRolesString = ''
-  for(i = 0; i < availableRoles.length; i++) {
-    if(availableRoles[i] && availableRoles[i] !== '@everyone') availableRolesString += '`' + availableRoles[i] + '` '
+    // Get roles of guild where the message was sent, exit if invalid
+    const role = message.guild.roles.find('name', name)
+
+    // Verify permissions
+    if (!validateRole(role)) return null
+
+    // Return otherwise
+    return role
   }
 
-  message.reply('Following roles are available: ' + availableRolesString)
+  // Validate role
+  function validateRole (role) {
+    for (const perm of adminPerms) {
+      if (
+        !role ||
+        role.hasPermission(perm) ||
+        role.name === '@everyone'
+      ) return false
+    }
+    return true
+  }
 }
