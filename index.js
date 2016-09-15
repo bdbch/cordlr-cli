@@ -19,7 +19,7 @@ function create (config = {}) {
 
   bot.once('ready', () => {
     // Require the actions provided
-    requireGlob(actionsGlob, { base: base }).then(actions => {
+    requireGlob(actionsGlob, { cwd: base }).then(actions => {
       const actionNames = Object.keys(actions)
 
       // Handle messages to run actions
