@@ -1,0 +1,9 @@
+{
+  "token": "...",
+  "actions": [
+    "./actions/*.js",
+    "./custom-scripts/*.js",
+    "cordlr-analytics"
+  ],
+  "prefix": "!"
+}

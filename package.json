@@ -1,7 +1,7 @@
 {
   "name": "cordlr",
   "description": "Cordlr Bot for Discord",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "license": "GPL-3.0",
   "repository": "devcord/cordlr",
   "main": "lib",
@@ -30,7 +30,7 @@
   },
   "scripts": {
     "test": "tape test.js | tap-spec",
-    "start": "node bin/main.js"
+    "start": "./bin/cordlr"
   },
   "files": [
     "lib",
