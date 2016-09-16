@@ -7,18 +7,13 @@ const path = require('path')
 const log = require('log-cb')
 const values = require('object-values')
 
-/**
- * Create the cordlr bot.
- */
-
 function create (config = {}) {
-  // Create bot.
   const bot = new DiscordClient(config.client)
-  const scriptGlobs = config.scripts
+  const scriptGlobs = config.actions
   const prefix = config.prefix
 
   // Where `.cordlrrc` is, otherwise where you ran `cordlr`
-  const base = path.dirname(config.config || process.cwd())
+  const base = path.dirname(config.config)
 
   // Bot script handling (where the magic happens)
   bot.once('ready', () => {
@@ -30,10 +25,12 @@ function create (config = {}) {
 
       // Initialize all scripts and stash command scripts
       const commands = new Map()
-      scripts.forEach(script => {
-        const handler = script(bot, config)
-        if (script.command && handler) {
-          commands.set(script.command, handler)
+      const plugins = getPlugins(scripts)
+
+      plugins.forEach(plugin => {
+        const handler = plugin(bot, config)
+        if (plugin.command && handler) {
+          commands.set(plugin.command, handler)
         }
       })
 
@@ -62,4 +59,10 @@ function create (config = {}) {
 
   // Pass bot on for custom handlers
   return bot
+}
+
+function getPlugins(scripts) {
+  return scripts.map(function (script) {
+    return script['index']
+  })
 }
