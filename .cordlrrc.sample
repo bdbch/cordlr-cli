@@ -1,5 +1,5 @@
 {
-  "token": "...",
+  "token": "BOT_TOKEN",
   "actions": [
     "./actions/*.js",
     "./custom-scripts/*.js",

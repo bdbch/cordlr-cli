@@ -13,6 +13,7 @@
     "log-cb": "^0.2.1",
     "minimist": "^1.2.0",
     "object-values": "^1.0.0",
+    "prompt": "^1.0.0",
     "rc": "^1.1.6",
     "replace-ext": "^1.0.0",
     "require-glob": "^3.1.1",
