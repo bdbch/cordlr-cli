@@ -61,7 +61,7 @@ function create (config = {}) {
   return bot
 }
 
-function getPlugins(scripts) {
+function getPlugins (scripts) {
   return scripts.map(function (script) {
     return script['index']
   })
