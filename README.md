@@ -7,20 +7,22 @@
 Devcord requires ES2015. So the latest, suggested versions are all versions up from `6.x`
 
 ## Installation
-* The bot can be installed per Github via `npm install -g devcord/cordlr`
-* Install node packages via `npm install`
-* to be done
+
+* Install Cordlr globally via `npm install -g cordlr`
+* create a new folder for your bot via `mkdir botname` and `cd botname` into it
+* Run `cordlr setup` and add you Bots API Key in the prompt
+* From the bot folder, now run `cordlr start` to run the bot
+
+## Plugins
+
+Since the bot is not doing anything by default, you have to install plugins. You can install plugins via `cordlr install xxx`
+You can find all kind of plugins on [npmjs.com](https://www.npmjs.com/search?q=cordlr-).
+
+If you want to install `cordlr-role` for example, run `cordlr install role`
+After installing the package, you can start Cordlr again and try out the plugin
 
 ## Forever
 If you want to restart the server automatically, you can use [`forever`](https://www.npmjs.com/package/forever)
-
-## Command List
-
-| Command | Description |
-| ------- | ----------- |
-| $role add "Role Name" | Adds Role "Role Name" to your User |
-| $role remove "Role Name" | Removes Role "Role Name" from your User |
-| $role list | Lists all available roles |
 
 ## Contribution
 
