@@ -4,7 +4,7 @@ const log = require('log-cb')
 
 module.exports = function () {
   // generate final config for starting the bot
-  baseConfig.actions.push('./plugins/**/index.js')
+  baseConfig.actions.push('plugins/node_modules/**/index.js')
   const config = baseConfig
 
   // Create bot.
