@@ -18,7 +18,7 @@ Devcord requires ES2015. So the latest, suggested versions are all versions up f
 Since the bot is not doing anything by default, you have to install plugins. You can install plugins via `cordlr install xxx`
 You can find all kind of plugins on [npmjs.com](https://www.npmjs.com/search?q=cordlr-).
 
-If you want to install `cordlr-role` for example, run `cordlr install role`
+If you want to install `cordlr-role` for example, run `cordlr install cordlr-role`
 After installing the package, you can start Cordlr again and try out the plugin
 
 ## Forever
