@@ -2,7 +2,7 @@
 
 ### Requirements
 
-* Node.js 4 or higher
+* Node.js 6 or higher
 * Global npm packages
 
 ### Installing via npm
