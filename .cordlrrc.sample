@@ -1,9 +1,5 @@
 {
   "token": "BOT_TOKEN",
-  "actions": [
-    "./actions/*.js",
-    "./custom-scripts/*.js",
-    "cordlr-analytics"
-  ],
+  "actions": [],
   "prefix": "!"
 }
