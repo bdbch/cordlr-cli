@@ -12,6 +12,7 @@
     "discord.js": "^9.2.0",
     "log-cb": "^0.2.1",
     "minimist": "^1.2.0",
+    "npm": "^3.10.7",
     "object-values": "^1.0.0",
     "prompt": "^1.0.0",
     "rc": "^1.1.6",

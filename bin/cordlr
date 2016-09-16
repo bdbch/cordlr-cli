@@ -8,6 +8,7 @@ const help = require('./methods/help')
 const version = require('./methods/version')
 const start = require('./methods/start')
 const setup = require('./methods/setup')
+const install = require('./methods/install')
 
 /**
  * Create bot using command line.
@@ -22,6 +23,9 @@ switch (args[0]) {
     break
   case 'setup':
     setup(cwd)
+    break
+  case 'install':
+    install(args[1])
     break
   default:
     start()
