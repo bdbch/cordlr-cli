@@ -1,6 +1,4 @@
 #!/usr/bin/env node
-const cordlr = require('../')
-const log = require('log-cb')
 const args = process.argv.splice(2)
 const cwd = process.cwd()
 
@@ -19,7 +17,7 @@ switch (args[0]) {
     help()
     break
   case '-v':
-    help()
+    version()
     break
   case 'setup':
     setup(cwd)
