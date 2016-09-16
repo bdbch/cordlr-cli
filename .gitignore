@@ -1,5 +1,6 @@
 node_modules
 .cordlrrc*
+!.cordlrrc.sample
 log
 *.pid
 npm-debug.log
