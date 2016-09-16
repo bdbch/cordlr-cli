@@ -12,6 +12,7 @@
     "discord.js": "^9.2.0",
     "log-cb": "^0.2.1",
     "minimist": "^1.2.0",
+    "object-values": "^1.0.0",
     "rc": "^1.1.6",
     "replace-ext": "^1.0.0",
     "require-glob": "^3.1.1",
@@ -29,7 +30,7 @@
     "tape": "^4.6.0"
   },
   "scripts": {
-    "test": "tape test.js | tap-spec",
+    "test": "eslint index.js bin/cordlr test.js && tape test.js | tap-spec",
     "start": "node bin/main.js"
   },
   "files": [

@@ -9,8 +9,8 @@ const path = require('path')
  */
 
 // Get options and set defaults
-const options = rc('cordlr', {
-  actions: path.resolve(__dirname, '../actions/*.js'),
+const config = rc('cordlr', {
+  scripts: './scripts/*.js',
   prefix: '$',
   adminPerms: [
     'KICK_MEMBERS',
@@ -28,20 +28,23 @@ const options = rc('cordlr', {
 })
 
 // Print help screen.
-if (options.help) {
+if (config.help) {
   const fs = require('fs')
   console.log(fs.readFileSync(path.join(__dirname, 'usage.txt')))
   process.exit(0)
 }
 
 // Print version screen.
-if (options.version) {
+if (config.version) {
   console.log(require('../package.json').version)
   process.exit(0)
 }
 
 // Create bot.
-const bot = cordlr(options)
+const bot = cordlr(config)
 
 // Log done message.
-bot.on('done', log('Loaded and authenticated the bot.'))
+bot.on('done', hasScripts => {
+  log('Loaded and authenticated the bot.')()
+  if (!hasScripts) log('(Warning: no scripts)')()
+})
