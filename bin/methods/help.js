@@ -6,5 +6,4 @@ const USAGE = fs.readFileSync(USAGE_PATH).toString();
 
 module.exports = function () {
   console.log(USAGE)
-  process.exit(0)
 }
