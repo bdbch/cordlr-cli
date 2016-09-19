@@ -1,7 +1,7 @@
 const rc = require('rc')
 
 module.exports = rc('cordlr', {
-  scripts: './scripts/*.js',
+  plugins: [],
   prefix: '$',
   adminPerms: [
     'KICK_MEMBERS',

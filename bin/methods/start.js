@@ -1,17 +1,12 @@
+module.exports = start
 const cordlr = require('../../')
-let baseConfig = require('../config')
+const config = require('../config')
 const log = require('log-cb')
 
-module.exports = function () {
-  // generate final config for starting the bot
-  baseConfig.actions.push('plugins/node_modules/**/index.js')
-  const config = baseConfig
-
+function start () {
   // Create bot.
   const bot = cordlr(config)
+
   // Log done message.
-  bot.on('done', hasScripts => {
-    log('Loaded and authenticated the bot.')()
-    if (!hasScripts) log('(Warning: no scripts)')()
-  })
+  bot.on('done', log('Loaded bot', 'Loaded bot (with no plugins)'))
 }

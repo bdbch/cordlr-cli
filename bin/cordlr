@@ -1,7 +1,5 @@
 #!/usr/bin/env node
-const args = process.argv.splice(2)
-const cwd = process.cwd()
-
+const minimist = require('minimist')
 const help = require('./methods/help')
 const version = require('./methods/version')
 const start = require('./methods/start')
@@ -12,20 +10,27 @@ const install = require('./methods/install')
  * Create bot using command line.
  */
 
-switch (args[0]) {
-  case '-h':
-    help()
-    break
-  case '-v':
-    version()
-    break
-  case 'setup':
-    setup(cwd)
-    break
-  case 'install':
-    install(args[1])
-    break
-  default:
-    start()
-    break
+// CLI data
+const flags = minimist(process.argv.slice(2))
+const args = flags._
+const action = args.shift()
+
+// Start CLI
+main()
+
+function main () {
+  // --help, -h, help
+  if (flags.help || flags.h || action === 'help') return help()
+
+  // --version, -v, version
+  if (flags.version || flags.v || action === 'version') return version()
+
+  // setup
+  if (action === 'setup') return setup()
+
+  // install
+  if (action === 'install') return install(args)
+
+  // otherwise, start it!
+  start()
 }

@@ -1,22 +1,14 @@
-const cwd = process.cwd()
+module.exports = install
 const log = require('log-cb')
-const npm = require('npm')
+const npmInstall = require('npm-i')
 
-module.exports = function (pkg) {
-  if (pkg) {
-    log('Installing ' + pkg)()
-    npm.load(function (err) {
-      if (err) {
-        return console.log(err)
-      }
-      npm.prefix = cwd + '/plugins'
-      npm.commands.install([pkg], function(er, data) {
-        if (er) {
-          return console.log(er)
-        }
-      })
-    })
-  } else {
-    console.log('Please provide a correct package name')
-  }
+const CWD = process.cwd()
+const NPM_OPTS = { base: CWD }
+
+function install (pkgs) {
+  if (!pkgs || !pkgs.length) return console.log('Please provide correct package names')
+
+  // Install packages
+  log('Installing ' + pkgs.join(', '))()
+  npmInstall(pkgs, NPM_OPTS, log('Successfully installed'))
 }
