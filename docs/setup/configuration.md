@@ -11,11 +11,11 @@ One of the most simple ways, is to just create a `.cordlrrc` file where you are 
   // Token
   "token": "...",
 
-  // different globs to load scripts from
-  "actions": [
-    "./actions/*.js", // Defaults
-    "./custom-scripts/*.js",
-    "cordlr-analytics"
+  // paths to plugins
+  "plugins": [
+    "cordlr-analytics",
+    "cordlr-role",
+    "./custom-plugin"
   ],
 
   // Chat command prefix
@@ -29,9 +29,11 @@ One of the most simple ways, is to just create a `.cordlrrc` file where you are 
 
  - `token` (required): The bot's token, used for logging in.
 
- - `actions`: Various file locations and globs to load files from, npm modules also resolved. (Default `./actions/*.js`)
+ - `plugins`: Paths to plugins to load.  Paths are as if they were `require`'d.
 
  - `prefix`: The chat command prefix. (Default `$`)
+
+Note that plugins can have their own options too.  Check documentation for them.
 
 ## Other configuration methods
 

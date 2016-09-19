@@ -1,4 +1,7 @@
-module.exports = function () {
-  console.log('Cordlr CLI Version ' + require('../../package.json').version)
-  process.exit(0)
+module.exports = version
+
+const VERSION = require('../../package.json').version
+
+function version () {
+  console.log(`v${VERSION}`)
 }

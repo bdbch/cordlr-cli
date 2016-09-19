@@ -2,56 +2,61 @@ module.exports = create
 const DiscordClient = require('discord.js').Client
 const minimist = require('minimist')
 const spawnargs = require('spawn-args')
-const requireGlob = require('require-glob')
 const path = require('path')
-const log = require('log-cb')
-const values = require('object-values')
+const resolve = require('resolve')
 
 function create (config = {}) {
   const bot = new DiscordClient(config.client)
-  const scriptGlobs = config.actions
+  const pluginPaths = config.plugins || []
   const prefix = config.prefix
 
   // Where `.cordlrrc` is, otherwise where you ran `cordlr`
-  const base = path.dirname(config.config)
+  const base = config.config ? path.dirname(config.config) : process.cwd()
+  const resolveOpts = { basedir: base }
 
-  // Bot script handling (where the magic happens)
+  // Bot plugin handling (where the magic happens)
   bot.once('ready', () => {
-    if (!scriptGlobs.length) return bot.emit('done', false)
+    if (!pluginPaths.length) return bot.emit('done', new Error('No plugins'))
 
-    // Require the scripts provided
-    requireGlob(scriptGlobs, { cwd: base }).then(modules => {
-      const scripts = values(modules)
+    // Get plugins
+    const plugins = pluginPaths.reduce(function (out, pluginPath) {
+      // Require plugin
+      const mod = require(resolve.sync(pluginPath, resolveOpts))
 
-      // Initialize all scripts and stash command scripts
-      const commands = new Map()
-      const plugins = getPlugins(scripts)
+      // Handle module
+      if (Array.isArray(mod)) for (const plugin of mod) out.push(plugin)
+      else out.push(mod)
 
-      plugins.forEach(plugin => {
-        const handler = plugin(bot, config)
-        if (plugin.command && handler) {
-          commands.set(plugin.command, handler)
+      // Next plugin
+      return out
+    }, [])
+
+    // Initialize all plugins and stash command plugins
+    const commands = new Map()
+    plugins.forEach(plugin => {
+      const handler = plugin(bot, config)
+      if (plugin.command && handler) {
+        commands.set(plugin.command, handler)
+      }
+    })
+
+    // Handle messages that run command plugins
+    bot.on('message', message => {
+      if (!message.content.indexOf(prefix) && message.channel.type !== 'dm') {
+        // Parse the name and input
+        const raw = message.content.slice(prefix.length)
+        const args = spawnargs(raw, { removequotes: 'always' })
+        const command = args.shift()
+
+        // Run it, if it is valid
+        if (commands.has(command)) {
+          commands.get(command)(message, args, minimist(args))
         }
-      })
+      }
+    })
 
-      // Handle messages that run command scripts
-      bot.on('message', message => {
-        if (!message.content.indexOf(prefix) && message.channel.type !== 'dm') {
-          // Parse the name and input
-          const raw = message.content.slice(prefix.length)
-          const args = spawnargs(raw, { removequotes: 'always' })
-          const command = args.shift()
-
-          // Run it, if it is valid
-          if (commands.has(command)) {
-            commands.get(command)(message, args, minimist(args))
-          }
-        }
-      })
-
-      // Emit "done" for setup complete
-      bot.emit('done', true)
-    }).catch(log.err())
+    // Emit "done" for setup complete
+    bot.emit('done', false)
   })
 
   // Attempt to log the bot in after handler set
@@ -59,10 +64,4 @@ function create (config = {}) {
 
   // Pass bot on for custom handlers
   return bot
-}
-
-function getPlugins (scripts) {
-  return scripts.map(function (script) {
-    return script['index']
-  })
 }
