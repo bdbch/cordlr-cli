@@ -45,7 +45,7 @@ function create (config = {}) {
       if (!message.content.indexOf(prefix) && message.channel.type !== 'dm') {
         // Parse the name and input
         const raw = message.content.slice(prefix.length)
-        const args = spawnargs(raw, { removequotes: 'always' })
+        const args = spawnargs(raw)
         const command = args.shift()
 
         // Run it, if it is valid
