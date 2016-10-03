@@ -1,24 +1,9 @@
-# Documentation
+## Documentation
 
-- [**Setup**](setup/)
-  - [Installation](setup/)
-  - [Configuration](setup/configuration.md)
-  - [CLI](setup/cli.md)
-  - [Deployment](setup/deployment.md)
-- [**Commands**](commands/)
-  - [General](commands/)
-  - [Role](commands/role.md)
-  - [Github](commands/github.md)
-  - [Trello](commands/trello.md)
-  - [Stackoverflow](commands/stackoverflow.md)
-- [**API**](api/)
-  - [Service API](api/service.md)
-- **Project**
-  - [Contributing](../CONTRIBUTING.md)
-  - [Roadmap](../../../projects/1)
+If you are new to cordlr, please see ["Getting Started"](getting-started.md)
 
-----
-
-#### Notes
-
-**Warning**:  Some things are not made yet or buggy, use caution until v1.
+ - [Getting started](getting-started.md)
+ - [Configuration](configuration.md)
+ - [Plugins](plugins.md)
+ - [Tips and tricks](tips-and-tricks.md)
+ - [Contributing](../CONTRIBUTING.md)
