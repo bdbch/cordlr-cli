@@ -42,7 +42,7 @@ function create (config = {}) {
 
     // Handle messages that run command plugins
     bot.on('message', message => {
-      if (!message.content.indexOf(prefix) && message.channel.type !== 'dm') {
+      if (!message.cleanContent.indexOf(prefix) && message.channel.type !== 'dm') {
         // Parse the name and input
         const raw = message.content.slice(prefix.length)
         const args = spawnargs(raw)
