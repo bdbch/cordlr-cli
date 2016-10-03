@@ -46,7 +46,7 @@ function create (config = {}) {
         // Parse the name and input
         const raw = message.content.slice(prefix.length)
         const input = spawnargs(raw)
-        const flags = minimist(args)
+        const flags = minimist(input)
         const args = flags._
         const command = args.shift()
 
