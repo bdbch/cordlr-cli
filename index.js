@@ -7,9 +7,11 @@ const resolve = require('resolve')
 
 function create (config = {}) {
   const bot = new DiscordClient(config.client)
-  const pluginPaths = config.plugins || []
   const prefix = config.prefix
 
+  let pluginPaths = config.plugins || []
+  if (!Array.isArray(pluginPaths)) pluginPaths = [pluginPaths]
+   
   // Where `.cordlrrc` is, otherwise where you ran `cordlr`
   const base = config.config ? path.dirname(config.config) : process.cwd()
   const resolveOpts = { basedir: base }
