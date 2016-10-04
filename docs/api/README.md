@@ -1,3 +1,0 @@
-# Cordlr APIs
-
-TBD
