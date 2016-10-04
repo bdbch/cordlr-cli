@@ -47,12 +47,14 @@ function create (config = {}) {
       if (!message.content.indexOf(prefix) && message.channel.type !== 'dm') {
         // Parse the name and input
         const raw = message.content.slice(prefix.length)
-        const args = spawnargs(raw)
+        const input = spawnargs(raw)
+        const flags = minimist(input)
+        const args = flags._
         const command = args.shift()
 
         // Run it, if it is valid
         if (commands.has(command)) {
-          commands.get(command)(message, args, minimist(args))
+          commands.get(command)(message, args, flags)
         }
       }
     })
