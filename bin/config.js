@@ -1,19 +1,11 @@
-const rc = require('rc')
+const fsproxy = require('fs-proxy')
 
-module.exports = rc('cordlr', {
-  plugins: [],
-  prefix: '$',
-  adminPerms: [
-    'KICK_MEMBERS',
-    'BAN_MEMBERS',
-    'ADMINISTRATOR',
-    'MANAGE_CHANNELS',
-    'MANAGE_GUILD',
-    'MANAGE_MESSAGES',
-    'MUTE_MEMBERS',
-    'DEAFEN_MEMBERS',
-    'MOVE_MEMBERS',
-    'MANAGE_NICKNAMES',
-    'MANAGE_ROLES_OR_PERMISSIONS'
-  ]
-})
+let config
+const configPath = `${process.cwd()}/package.json`
+try {
+  config = fsproxy(configPath)
+} catch (e) {
+  console.error('Error with reading the config file')
+  throw e
+}
+module.exports = config.cordlr
