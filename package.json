@@ -8,7 +8,7 @@
   "bin": "./bin/cordlr",
   "dependencies": {
     "discord.js": "^9.2.0",
-    "fs-proxy": "^1.5.0",
+    "fs-proxy": "^1.7.1",
     "log-cb": "^0.2.1",
     "minimist": "^1.2.0",
     "npm-i": "0.0.2",

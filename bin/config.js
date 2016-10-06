@@ -1,11 +1,11 @@
 const fsproxy = require('fs-proxy')
 
-let config
 const configPath = `${process.cwd()}/package.json`
+let config
 try {
-  config = fsproxy(configPath)
+  config = fsproxy(configPath, (key) => key.slice(0, 2) !== ['cordlr', 'package'])
 } catch (e) {
-  console.error('Error with reading the config file')
-  throw e
+  config = { cordlr: {} }
 }
-module.exports = config.cordlr
+
+module.exports = config

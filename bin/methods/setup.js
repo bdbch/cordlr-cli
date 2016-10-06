@@ -18,29 +18,14 @@ function setup () {
   }).start()
 }
 
-function writeConfig (config) {
-  return new Promise((resolve, reject) => {
-    fs.readFile(packagePath, (er, data) => {
-      if (er) { // means the file doens't exist
-        const newPackage = { cordlr: config }
-        fs.writeFile(packagePath, JSON.stringify(newPackage, null), (err) => {
-          if (err) {
-            reject(err)
-          } else {
-            resolve(newPackage)
-          }
-        })
-      } else {
-        const existingPackage = JSON.parse(data)
-        const newPackage = Object.assign({}, existingPackage, { cordlr: config })
-        fs.writeFile(packagePath, JSON.stringify(newPackage), (err) => {
-          if (err) {
-            reject(err)
-          } else {
-            resolve(newPackage)
-          }
-        })
-      }
-    })
-  })
+function writeConfig (promptConfig) {
+  let existingConfig = { cordlr: {} }
+  try {
+    existingConfig = JSON.parse(fs.readFileSync(packagePath))
+  } catch (e) {
+    console.error('No existing config found, creating new one')
+  }
+  existingConfig.cordlr = Object.assign({}, configDefaults, existingConfig.cordlr, promptConfig)
+  const writeString = JSON.stringify(existingConfig, null, 2)
+  fs.writeFileSync(packagePath, writeString)
 }
