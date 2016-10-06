@@ -1,5 +1,10 @@
 #!/usr/bin/env node
 const minimist = require('minimist')
+const help = require('./methods/help')
+const version = require('./methods/version')
+const start = require('./methods/start')
+const setup = require('./methods/setup')
+const install = require('./methods/install')
 
 /**
  * Create bot using command line.
@@ -15,17 +20,17 @@ main()
 
 function main () {
   // --help, -h, help
-  if (flags.help || flags.h || action === 'help') return require('./methods/help')()
+  if (flags.help || flags.h || action === 'help') return help()
 
   // --version, -v, version
-  if (flags.version || flags.v || action === 'version') return require('./methods/version')()
+  if (flags.version || flags.v || action === 'version') return version()
 
   // setup
-  if (action === 'setup') return require('./methods/setup')()
+  if (action === 'setup') return setup()
 
   // install
-  if (action === 'install') return require('./methods/install')(args)
+  if (action === 'install') return install(args)
 
   // otherwise, start it!
-  require('./methods/start')()
+  start()
 }
