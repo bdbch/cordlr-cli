@@ -1,6 +1,7 @@
 {
   "plugins": [],
   "prefix": "$",
+  "token": "",
   "adminPerms": [
     "KICK_MEMBERS",
     "BAN_MEMBERS",
