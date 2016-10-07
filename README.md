@@ -1,4 +1,4 @@
-# Cordlr
+![cordlr](http://i.imgur.com/c8nEvPi.jpg)
 
 Cordlr is a bot for [Discord](https://discordapp.com/) that uses a simple and powerful [plugin system](docs/plugins.md).  It is built with [Node.js](https://nodejs.org/) and uses [npm](https://www.npmjs.com/) to to host and install [plugins made from the community](https://www.npmjs.com/browse/keyword/cordlr).  Everything shares a central configuration to keep things clean, on top of easy and fast factory-based code.
 
