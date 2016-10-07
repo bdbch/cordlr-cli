@@ -13,10 +13,10 @@ try {
 
 // insert command line options
 const args = minimist(process.argv.slice(2))
-for (const key of Object.keys(args)) {
-  if (key === '_') continue
-  config[key] = args[key]
-}
+Object.assign(config, args)
+// remove _ property added by minimist since we don't use that (yet)
+delete config._
+
 // attach method to write config to file
 config.writeToFile = () => {
   const writeString = JSON.stringify(config, null, 2)
