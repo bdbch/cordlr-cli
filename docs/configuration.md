@@ -11,7 +11,7 @@ For example:
 ```js
 {
   // ...
-  cordlr: {
+  "cordlr": {
     "token": "bot_token",
     // ...
   }
@@ -39,7 +39,7 @@ Example:
 ```js
 {
   // ...
-  cordlr: {
+  "cordlr": {
     "token": "MsA1VTAyMjl5MTU3MTQ4Njcl.Kr0tah.Rf07DZNdqZZ6z2tH3HqW1OFGjQ9",
     "prefix": "!",
     "plugins": [
