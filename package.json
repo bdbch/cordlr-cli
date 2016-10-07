@@ -38,6 +38,14 @@
     "bin",
     "index.js"
   ],
+  "keywords": [
+    "cordlr",
+    "bot",
+    "discord",
+    "discord.js",
+    "plugins",
+    "easy"
+  ],
   "bugs": {
     "url": "https://github.com/Devcord/cordlr/issues"
   },
