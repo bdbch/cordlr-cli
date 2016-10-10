@@ -3,34 +3,34 @@ const minimist = require('minimist')
 const help = require('./methods/help')
 const version = require('./methods/version')
 const start = require('./methods/start')
-const setup = require('./methods/setup')
-const install = require('./methods/install')
 
 /**
  * Create bot using command line.
  */
 
 // CLI data
-const flags = minimist(process.argv.slice(2))
+const flags = minimist(process.argv.slice(2), {
+  alias: {
+    prefix: 'x',
+    help: 'h',
+    version: 'v',
+    plugins: ['p', 'plugin'],
+    token: 't',
+    loader: 'l'
+  }
+})
 const args = flags._
-const action = args.shift()
+
+function main () {
+  // --help, -h
+  if (flags.help) return help()
+
+  // --version, -v
+  if (flags.version) return version()
+
+  // otherwise, start it!
+  start(flags, args[0] || '')
+}
 
 // Start CLI
 main()
-
-function main () {
-  // --help, -h, help
-  if (flags.help || flags.h || action === 'help') return help()
-
-  // --version, -v, version
-  if (flags.version || flags.v || action === 'version') return version()
-
-  // setup
-  if (action === 'setup') return setup()
-
-  // install
-  if (action === 'install') return install(args)
-
-  // otherwise, start it!
-  start()
-}
