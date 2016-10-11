@@ -7,6 +7,7 @@ function cordlr (config = {}) {
 
   // Load bot
   const loader = require(resolve.sync(config.loader, { basedir: process.cwd() }))
-  bot.on('ready', loader(bot, config))
+  const handler = loader(bot, config)
+  if (handler) bot.on('ready', handler)
   return bot
 }
