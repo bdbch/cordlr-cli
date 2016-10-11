@@ -26,10 +26,13 @@ function start (flags, plugins = []) {
 
   // Set defaults
   if (!config.loader) config.loader = path.join(__dirname, '..', 'loader')
-  if (!config.plugins && plugins.length) config.plugins = []
-  config.plugins.push(...plugins)
+  if (plugins.length) {
+    if (!config.plugins) config.plugins = []
+    config.plugins.push(...plugins)
+  }
 
   // Create bot.
   const bot = cordlr(config)
-  bot.on('loaded', log('Loaded bot', 'Loaded bot (with no plugins)'))
+  bot.on('error', log.err())
+  bot.on('loaded', log('Loaded successfully'))
 }

@@ -59,6 +59,7 @@ function loader (bot, config) {
     })
 
     // Emit "loaded" for setup complete
-    bot.emit('loaded', !!plugins.length || new Error('No plugins'))
+    if (!plugins.length) bot.emit('error', new Error('No plugins'))
+    else bot.emit('loaded')
   }
 }
