@@ -4,10 +4,10 @@ const path = require('path')
 const cordlr = require('../../')
 const log = require('log-cb')
 
-function start (flags, folder = '') {
+function start (flags, plugins = []) {
   // Load configuration file
   let config = {}
-  const configPath = path.resolve(process.cwd(), folder, 'package.json')
+  const configPath = path.resolve(process.cwd(), 'package.json')
   try { config = require(configPath) } catch (e) {}
   const uneditedConfig = Object.assign({}, config)
   // Add command-line options to config
@@ -26,6 +26,8 @@ function start (flags, folder = '') {
 
   // Set defaults
   if (!config.loader) config.loader = path.join(__dirname, '..', 'loader')
+  if (!config.plugins && plugins.length) config.plugins = []
+  config.plugins.push(...plugins)
 
   // Create bot.
   const bot = cordlr(config)
