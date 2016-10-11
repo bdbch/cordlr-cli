@@ -1,6 +1,6 @@
 {
   "name": "cordlr",
-  "description": "Cordlr Bot for Discord",
+  "description": "A discord bot using plugins created from the community.",
   "version": "0.0.4",
   "license": "GPL-3.0",
   "repository": "devcord/cordlr",
@@ -10,8 +10,6 @@
     "discord.js": "^9.2.0",
     "log-cb": "^0.2.1",
     "minimist": "^1.2.0",
-    "npm-i": "0.0.2",
-    "prompt": "^1.0.0",
     "resolve": "^1.1.7",
     "spawn-args": "^0.2.0"
   },
