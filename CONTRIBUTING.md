@@ -11,6 +11,7 @@ Thanks for taking the time to contribute.  Here are a few guideline:
   * Use ES2015
     * Use `const` if value is not going to change
     * Use `let` if value is going to change in this block
+  * use promises instead of callbacks where possible
 * Pullrequests should always include this
   * Title: `[PROPOSAL] Lorem Ipsum Dolor`
     * `[TAG]` - Use from following tags
