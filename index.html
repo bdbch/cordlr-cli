@@ -7,9 +7,9 @@
         <meta name="description" content="Cordlr helps you creating modular Discord bots for your specific needs.">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="apple-touch-icon" href="apple-touch-icon.png">
-        <!-- Place favicon.ico in the root directory -->
+        <link rel="icon" type="image/png" href="./favicon.png">
 
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/main.css">
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
@@ -22,13 +22,14 @@
         <div class="container">
           <header class="header">
             <h1 class="header-logo">
-              <img src="./img/cordlr-logo.png" />
+              <img src="./img/cordlr.png" />
             </h1>
           </header>
 
           <nav class="navigation">
             <ul class="navigation-menu-list">
               <li class="navigation-menu-item"><a class="navigation-menu-link" data-scroll href="#about">About</a></li>
+              <li class="navigation-menu-item"><a class="navigation-menu-link" data-scroll href="#install">Installation</a></li>
               <li class="navigation-menu-item"><a class="navigation-menu-link" data-scroll href="#usage">Usage</a></li>
               <li class="navigation-menu-item"><a class="navigation-menu-link" data-scroll href="#license">License</a></li>
               <li class="navigation-menu-item"><a class="navigation-menu-link" href="https://github.com/Devcord/cordlr">Cordlr on Github</a></li>
@@ -36,10 +37,30 @@
           </nav>
 
           <section class="content content-about" id="about">
+            <div class="text-center"><img class="image" src="./img/demo.jpg"></div>
             <h2 class="content-headline">About</h2>
             <p>
               Cordlr is a modular approach for Discord Bots so Server owners can put together their own bots without coding any single line. The only requirement is a hosting service which is capable to host NodeJS apps with version 6.0 and higher.
             </p>
+          </section>
+
+          <section class="content content-install" id="install">
+            <h2 class="content-headline">Installation</h2>
+            <h3>Requirements</h3>
+            <ul>
+              <li>Node.js 6 ></li>
+              <li><a href="http://discord.gg/" target="_blank">Discord</a></li>
+            </ul>
+            <h3>Installation</h3>
+            <p>In this demonstration we're using <code class="codeblock">nave</code> for managing the node environment.</p>
+            <ul>
+              <li><code class="codeblock">nave use 6</code> - installs latest node version for major 6</li>
+              <li><code class="codeblock">npm install cordlr -g</code> - installs the cordlr binary globally or <code class="codeblock">npm install -g devcord/cordlr</code> for the latest stable commit</li>
+              <li><code class="codeblock">mkdir mybot</code> - create a folder for your bot</li>
+              <li><code class="codeblock">cordlr</code> - inits the cordlr bot without any modules</li>
+              <li><code class="codeblock">cordlr install <em>modulename</em></code> - installs a cordlr module. is equal with <code class="codeblock">npm install cordlr-<em>modulename</em></code></li>
+              <li><a href="https://github.com/Devcord/cordlr/blob/master/docs/getting-started.md" target="_blank">Read the <em>getting started</em> on github</a></li>
+            </ul>
           </section>
 
           <section class="content content-usage" id="usage">
@@ -48,6 +69,7 @@
             <script async src="http://jsfiddle.net/dnz5vv98/embed/js/dark/"></script>
             <hr class="trimline">
             <h3>A module using flags and/or arguments</h3>
+            <script async src="http://jsfiddle.net/fpkavxdu/embed/js/dark/"></script>
           </section>
 
           <section class="content content-license" id="license">

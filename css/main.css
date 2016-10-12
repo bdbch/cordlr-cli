@@ -290,7 +290,15 @@ textarea {
 /* Template */
 
 body {
+  font-family: 'Open Sans', sans-serif;
   font-size: 14px;
+  line-height: 1.65rem;
+  border-top: 15px solid #1bd2ae;
+  padding-top: 30px;
+}
+
+.text-center {
+  text-align: center;
 }
 
 h2 {
@@ -308,9 +316,22 @@ h6 {
   margin-bottom: 1rem;
 }
 
+a {
+  color: #1bd2ae;
+}
+
+a:hover {
+  color: #333;
+}
+
 .trimline {
   margin: 2rem 0;
   border-color: #f1f1f1;
+}
+
+.image {
+  height: auto;
+  max-width: 100%;
 }
 
 .container {
@@ -321,7 +342,7 @@ h6 {
 }
 
 .header {
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   text-align: center;
 }
 
@@ -339,6 +360,23 @@ h6 {
 .navigation-menu-list .navigation-menu-item {
   display: inline-block;
   margin: 0 15px;
+}
+
+.navigation-menu-list .navigation-menu-link {
+  color: #888;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.navigation-menu-list .navigation-menu-link:hover {
+  color: #555;
+}
+
+.codeblock {
+  background: #eee;
+  border: 1px solid #ddd;
+  padding: 4px;
 }
 
 .content {
