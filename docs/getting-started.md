@@ -53,6 +53,7 @@ You can use two methods to load plugins by default.
     }
     ```
  2. Using the command line input:
+
     ```sh
     cordlr 'cordlr-help' 'cordlr-cleverbot' 'chordlr' './local-plugin'
     ```
