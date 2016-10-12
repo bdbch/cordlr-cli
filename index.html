@@ -3,8 +3,8 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title></title>
-        <meta name="description" content="">
+        <title>Cordlr - The Discord bot framework</title>
+        <meta name="description" content="Cordlr helps you creating modular Discord bots for your specific needs.">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -19,19 +19,55 @@
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
         <![endif]-->
 
-        <!-- Add your site or application content here -->
-        <p>Hello world! This is HTML5 Boilerplate.</p>
+        <div class="container">
+          <header class="header">
+            <h1 class="header-logo">
+              <img src="./img/cordlr-logo.png" />
+            </h1>
+          </header>
+
+          <nav class="navigation">
+            <ul class="navigation-menu-list">
+              <li class="navigation-menu-item"><a class="navigation-menu-link" data-scroll href="#about">About</a></li>
+              <li class="navigation-menu-item"><a class="navigation-menu-link" data-scroll href="#usage">Usage</a></li>
+              <li class="navigation-menu-item"><a class="navigation-menu-link" data-scroll href="#license">License</a></li>
+              <li class="navigation-menu-item"><a class="navigation-menu-link" href="https://github.com/Devcord/cordlr">Cordlr on Github</a></li>
+            </ul>
+          </nav>
+
+          <section class="content content-about" id="about">
+            <h2 class="content-headline">About</h2>
+            <p>
+              Cordlr is a modular approach for Discord Bots so Server owners can put together their own bots without coding any single line. The only requirement is a hosting service which is capable to host NodeJS apps with version 6.0 and higher.
+            </p>
+          </section>
+
+          <section class="content content-usage" id="usage">
+            <h2>Usage</h2>
+            <h3>A basic ping/pong module for Cordlr</h3>
+            <script async src="http://jsfiddle.net/dnz5vv98/embed/js/dark/"></script>
+            <hr class="trimline">
+            <h3>A module using flags and/or arguments</h3>
+          </section>
+
+          <section class="content content-license" id="license">
+            <h2>License</h2>
+            <p>
+              <strong>GNU GENERAL PUBLIC LICENSE</strong><br />
+              Version 3, 29 June 2007
+            </p>
+            <p>
+              Copyright (C) 2007 Free Software Foundation, Inc. (http://fsf.org/) Everyone is permitted to copy and distribute verbatim copies of this license document, but changing it is not allowed.
+            </p>
+            <p>
+              <a href="https://raw.githubusercontent.com/Devcord/cordlr/master/LICENSE" target="_blank">Read more</a>
+            </p>
+          </section>
+        </div>
 
         <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.1.0.min.js"><\/script>')</script>
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
-
-        <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
-        <script>
-            window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
-            ga('create','UA-XXXXX-Y','auto');ga('send','pageview')
-        </script>
-        <script src="https://www.google-analytics.com/analytics.js" async defer></script>
     </body>
 </html>
