@@ -8,9 +8,10 @@ function start (flags, plugins = []) {
   // Load configuration file
   let config = {}
   const configPath = path.resolve(process.cwd(), 'package.json')
-  try { config = require(configPath) } catch (e) {}
+  try { config = require(configPath) } catch (e) { log()(e) }
   const uneditedConfig = Object.assign({}, config)
   // Add command-line options to config
+
   Object.assign(config, flags)
   delete config._
 
