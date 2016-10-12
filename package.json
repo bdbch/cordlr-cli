@@ -30,16 +30,12 @@
   },
   "files": [
     "lib",
-    "actions",
     "bin",
     "index.js"
   ],
   "keywords": [
-    "cordlr",
-    "bot",
     "discord",
-    "discord.js",
-    "plugins",
+    "bot",
     "easy"
   ],
   "bugs": {

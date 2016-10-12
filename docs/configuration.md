@@ -1,72 +1,82 @@
 ## Configuration
 
-The configuration for cordlr is stored in the package.json file of your project, under a key called `cordlr`
+You can configure the [default loader](https://github.com/cordlr/cordlr-loader) in two easy ways:
 
-## Using a `package.json` file
+ 1. Creating a `package.json` file
+ 2. Using command line flags and input
 
-One simple method is to just create a `package.json` file where you are running the command.  And put JSON into it.
+Note that configuring depends heavily on [your loader](loader.md).  See their own documentation if you are using something non-standard.  Everything below is documented for the default.
 
-For example:
+## Creating a `package.json` file
+
+You can create a `package.json` file where you are run the `cordlr` command, and it will load the whole file as your configuration, alongside any command line options you supply.
+
+Example of a `package.json`:
 
 ```js
 {
-  // ...
-  "cordlr": {
-    "token": "bot_token",
-    // ...
+  "name": "My Bot",
+  "description": "This bot does amazing things",
+  "token": "MTA1MTAXMjQ8XTU3MTX2Njcy.XriYWg.X1nXn6UvUlwcNXoE5CMAc7k7BXg",
+  "plugins": [
+    "cordlr-help",
+    "cordlr-svg",
+    "cordlr-color",
+    "cordlr-cleverbot"
+  ],
+  // Other options
+  "dependencies": {
+    "cordlr-help": "v1",
+    // Other dependencies
   }
 }
 ```
 
-## Using the command-line
+## Using command line flags and input
 
-When you start the bot, you can also supply command-line flags as configuration options:
+Alternative, you can supply options through the command line interface when you start the bot.  Regular input is loaded as plugin names, and flags are applied as config options.
+
+For example:
 
 ```sh
 cordlr --token="bot_token" --prefix="."
 ```
 
-## Native options
+There is several aliases you can use too:
+ - `-x` as `--prefix`
+ - `-t` as `--token`
+ - `-l` as `--loader`
+ - `-p` or `--plugin` as `--plugins`
 
-There are a few native options.  Although most come from plugins, so read their individual documentation.
+## Logging in
 
- - `token` (`String`): The token of your bot
- - `prefix` (`String`): The prefix that triggers commands (i.e. `!`, `$`, `@botname `, etc.)
- - `plugins` (`Array`): List of paths that are resolved with `require`.
-
-Example:
+You can use `token`, or `email` and `password`, with the default loader:
 
 ```js
-{
-  // ...
-  "cordlr": {
-    "token": "MsA1VTAyMjl5MTU3MTQ4Njcl.Kr0tah.Rf07DZNdqZZ6z2tH3HqW1OFGjQ9",
-    "prefix": "!",
-    "plugins": [
-      "cordlr-role",
-      "./custom-plugin",
-      // ... etc
-    ]
-  }
-}
+"token": "<access token here>",
+// Or using credentials
+"email": "foo@example.com",
+"password": "Foo_Blah_12"
 ```
 
-## Plugins
+## Loading plugins
 
-Plugins are resolved as if they were `require()`'ed.  So, if you see this:
+With the default loader, you supply a `plugins` option to the config, where the entries are `require`'ed.  You can load dependencies or local plugins this way:
 
 ```js
 "plugins": [
-  "cordlr-role",
   "cordlr-help",
-  "./custom"
+  "./custom-plugin"
 ]
 ```
-You can imagine them being resolved like
+
+You can imagine them being resolved like this:
+
 ```js
-require('cordlr-role')
-require('cordlr-help')
-require('./custom')
+plugins: [
+  require('cordlr-help'),
+  require('./custom')
+]
 ```
 
 These modules can export either a plugin directly, or an array of multiple plugins.

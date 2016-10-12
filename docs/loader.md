@@ -1,10 +1,11 @@
 ## Loaders
 
-A "loader" is a specialized plugin that is responsible for adding all of your other plugins into the system.  Cordlr comes with a standard default loader, however you can replace it for an extremely customized bot.
+A "loader" is a module responsible for adding all of your plugins into the system.  Cordlr comes with a default loader, however you can replace it for an extremely customized bot.
 
-It's important to note that plugins are not compatible between loaders unless they are designed to be.  A loader can interpret a module however it wants.  That is why it is recommended to stick with the standard loader for less advanced users, since the majority of plugins are designed for it.
+It's important to note that plugins are not compatible between loaders unless they are designed to be.  A loader can interpret a module however it wants.  That is why it is recommended to stick with the standard loader for new users, since the majority of plugins are designed for it.
 
 ### Setting a loader
+
 In your config, you will want to add:
 
 ```js

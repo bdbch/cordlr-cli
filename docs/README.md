@@ -1,9 +1,10 @@
 ## Documentation
 
-If you are new to cordlr, please see ["Getting Started"](getting-started.md)
-
- - [Getting started](getting-started.md)
+ - [Getting Started](getting-started.md)
  - [Configuration](configuration.md)
  - [Plugins](plugins.md)
- - [Tips and tricks](tips-and-tricks.md)
+ - [Packages](packages.md)
+ - [Tips and Tricks](tips-and-tricks.md)
  - [Contributing](../CONTRIBUTING.md)
+
+If you are new to cordlr, see ["Getting Started"](getting-started.md)
