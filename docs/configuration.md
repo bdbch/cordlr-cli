@@ -9,9 +9,7 @@ Note that configuring depends heavily on [your loader](loader.md).  See their ow
 
 ## Creating a `package.json` file
 
-You can create a `package.json` file where you are run the `cordlr` command, and it will load the whole file as your configuration, alongside any command line options you supply.
-
-Example of a `package.json`:
+You can create a `package.json` file where you run the `cordlr` command, and it will load the whole file as your configuration.  An `package.json` file could look like this:
 
 ```js
 {
@@ -34,12 +32,10 @@ Example of a `package.json`:
 
 ## Using command line flags and input
 
-Alternative, you can supply options through the command line interface when you start the bot.  Regular input is loaded as plugin names, and flags are applied as config options.
-
-For example:
+Alternatively, you can use the command line interface when you start the bot.  Regular input is loaded as plugin names, and flags are applied as config options.  For example:
 
 ```sh
-cordlr --token="bot_token" --prefix="."
+cordlr --token='bot_token' --prefix='.' cordlr-help cordlr-svg
 ```
 
 There is several aliases you can use too:

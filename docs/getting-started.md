@@ -51,7 +51,11 @@ You can use two methods to load plugins by default.
         // ...
       }
     }
-```
+    ```
+ 2. Using the command line input:
+    ```sh
+    cordlr 'cordlr-help' 'cordlr-cleverbot' 'chordlr' './local-plugin'
+    ```
 
 These array items are loaded as if they were `require(e)`'ed, which means you can do local plugins alongside your dependencies.
 

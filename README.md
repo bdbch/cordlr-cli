@@ -2,9 +2,7 @@
 
 > A discord bot using plugins created by the community.
 
-Cordlr is a highly customizable bot for [Discord](https://discordapp.com/) that uses [plugins created by the community](https://npmjs.com/browse/keywords/cordlr), so that you can have a bot perfect for your server with only a small amount of effort.
-
-Read the ["Getting Started"](docs/getting-started.md) page for learning how to use cordlr.
+Cordlr is a highly customizable bot for [Discord](https://discordapp.com/) that uses [plugins created by the community](https://npmjs.com/browse/keywords/cordlr), so that you can have a bot perfect for your server with only a small amount of effort.  Read the ["Getting Started"](docs/getting-started.md) page to learn how to use cordlr.
 
 ## Installation
 
