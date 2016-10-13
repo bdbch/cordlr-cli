@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "license": "GPL-3.0",
   "repository": "devcord/cordlr",
-  "main": "index.js",
+  "main": "./bin/methods/start.js",
   "bin": "./bin/cordlr",
   "dependencies": {
     "cordlr-loader": "^0.1.0",
@@ -29,10 +29,7 @@
     "start": "./bin/cordlr"
   },
   "files": [
-    "lib",
-    "actions",
-    "bin",
-    "index.js"
+    "bin"
   ],
   "keywords": [
     "cordlr",
