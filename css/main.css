@@ -381,6 +381,10 @@ a:hover {
   color: #555;
 }
 
+.navigation-menu-github {
+  margin: 1em;
+}
+
 .codeblock {
   background: #eee;
   border: 1px solid #ddd;
