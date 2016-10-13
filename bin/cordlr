@@ -19,7 +19,6 @@ const flags = minimist(process.argv.slice(2), {
     loader: 'l'
   }
 })
-const plugins = flags._
 
 function main () {
   // --help, -h
@@ -29,7 +28,7 @@ function main () {
   if (flags.version) return version()
 
   // otherwise, start it!
-  start(flags, plugins)
+  start(flags)
 }
 
 // Start CLI
