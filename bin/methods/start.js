@@ -1,13 +1,13 @@
 module.exports = start
 const { writeFile } = require('fs')
-const { resolve } = require('path')
+const path = require('path')
 const log = require('log-cb')
 const { Client } = require('discord.js')
 
 function start (flags) {
   // Load configuration file
   let config = {}
-  const configPath = resolve(process.cwd(), 'package.json')
+  const configPath = path.resolve(process.cwd(), 'package.json')
   try {
     config = require(configPath)
   } catch (e) {
@@ -41,6 +41,7 @@ function start (flags) {
 
   // Create bot
   const bot = new Client()
+  bot.on('error', log.err())
   bot.on('ready', log('Loaded successfully'))
 
   // Load loader
