@@ -4,14 +4,14 @@
   "version": "0.1.0",
   "license": "GPL-3.0",
   "repository": "devcord/cordlr",
-  "main": "index.js",
+  "main": "./bin/methods/start.js",
   "bin": "./bin/cordlr",
   "dependencies": {
+    "cordlr-loader": "^0.1.0",
     "discord.js": "^9.2.0",
     "log-cb": "^0.2.1",
     "minimist": "^1.2.0",
-    "resolve": "^1.1.7",
-    "spawn-args": "^0.2.0"
+    "resolve": "^1.1.7"
   },
   "engines": {
     "node": ">=6"
@@ -25,13 +25,11 @@
     "tape": "^4.6.0"
   },
   "scripts": {
-    "test": "eslint index.js test.js 'bin/**/*.js' && tape test.js | tap-spec",
+    "test": "eslint 'bin/**/*.js'",
     "start": "./bin/cordlr"
   },
   "files": [
-    "lib",
-    "bin",
-    "index.js"
+    "bin"
   ],
   "keywords": [
     "discord",

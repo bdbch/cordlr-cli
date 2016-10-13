@@ -1,4 +1,4 @@
-![cordlr](http://i.imgur.com/c8nEvPi.jpg)
+![cordlr](http://i.imgur.com/GPVoYNk.jpg)
 
 > A discord bot using plugins created by the community.
 
