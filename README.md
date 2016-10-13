@@ -1,21 +1,17 @@
 ![cordlr](http://i.imgur.com/GPVoYNk.jpg)
 
-Cordlr is a bot for [Discord](https://discordapp.com/) that uses a simple and powerful [plugin system](docs/plugins.md).  It is built with [Node.js](https://nodejs.org/) and uses [npm](https://www.npmjs.com/) to host and install [plugins made from the community](https://www.npmjs.com/browse/keyword/cordlr).  Everything shares a central configuration to keep things clean, on top of easy and fast factory-based code.
+> A discord bot using plugins created by the community.
+
+Cordlr is a highly customizable bot for [Discord](https://discordapp.com/) that uses [plugins created by the community](https://npmjs.com/browse/keywords/cordlr), so that you can have a bot perfect for your server with only a small amount of effort.  Read the ["Getting Started"](docs/getting-started.md) page to learn how to use cordlr.
 
 ## Installation
-```
+
+```sh
 npm install -g cordlr
 ```
-Use GitHub to install the latest stable commit:
-```
-npm install -g devcord/cordlr
-```
+(Requires Node v6 or greater.)
 
-[**Add the official cordlr bot to your server (no hosting required)**](https://discordapp.com/oauth2/authorize?client_id=223165778357256194&scope=bot&permissions=0x00000008)
-
-### Requirements
- - `node`: >=6
- - `npm`: any
+Install experimental releases with `cordlr@next`.
 
 ## Documentation
 

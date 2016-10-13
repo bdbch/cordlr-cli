@@ -32,11 +32,8 @@
     "bin"
   ],
   "keywords": [
-    "cordlr",
-    "bot",
     "discord",
-    "discord.js",
-    "plugins",
+    "bot",
     "easy"
   ],
   "bugs": {
