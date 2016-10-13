@@ -39,7 +39,7 @@ function start (flags, plugins = []) {
   // Create bot
   const bot = new Client()
   bot.on('error', log.err())
-  bot.on('ready', () => log('Loaded successfully')())
+  bot.on('ready', log('Loaded successfully'))
 
   // Load loader
   const loader = require(config.loader)
