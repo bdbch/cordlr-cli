@@ -21,7 +21,7 @@ Some examples:
 
 ### Designing a loader
 
-Loaders are simple.  It's a module that exports a function.  This function is called with `bot` and `config`, where you can set your own listeners and whatnot.
+Loaders are simple.  It's a module that exports a function.  This function is called with `bot` and `config`, where you can set your own listeners and whatnot.  They should also always return `bot`.
 
 For example:
 
@@ -33,6 +33,8 @@ function loader (bot, config) {
   bot.on('message', function () {
     // ...
   })
+  
+  return bot
 }
 ```
 
