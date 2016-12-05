@@ -6,6 +6,8 @@ Cordlr is a highly customizable bot for [Discord](https://discordapp.com/) that 
 
 ## Installation
 
+[![Join the chat at https://gitter.im/Devcord/cordlr](https://badges.gitter.im/Devcord/cordlr.svg)](https://gitter.im/Devcord/cordlr?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 ```sh
 npm install -g cordlr
 ```
