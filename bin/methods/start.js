@@ -7,12 +7,17 @@ const { Client } = require('discord.js')
 function start (flags) {
   // Load configuration file
   let config = {}
-  const configPath = path.resolve(process.cwd(), 'package.json')
+  let pkg = {}
+  const configPath = path.resolve(process.cwd(), '.cordlrrc')
+  const pkgPath = path.resolve(process.cwd(), 'package.json')
   try {
     config = require(configPath)
   } catch (e) {
     if (e.code !== 'MODULE_NOT_FOUND') return log()(e)
   }
+  try {
+    pkg = require(pkgPath)
+  } catch (e) {} // no error handling
 
   // Set defaults
   if (!config.loader) config.loader = 'cordlr-loader'
@@ -39,6 +44,11 @@ function start (flags) {
     })
   })
 
+  // check token in config
+  if (!config.token) {
+    throw new Error('No token specified')
+  }
+
   // Create bot
   const bot = new Client()
   bot.on('error', log.err())
@@ -46,5 +56,5 @@ function start (flags) {
 
   // Load loader
   const loader = require(config.loader)
-  loader(bot, config)
+  loader(bot, config, pkg)
 }
