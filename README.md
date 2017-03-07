@@ -9,7 +9,7 @@ Cordlr is a highly customizable bot for [Discord](https://discordapp.com/) that 
 ## Installation
 
 ```sh
-npm install -g cordlr
+npm install -g cordlr-cli
 ```
 (Requires Node v6 or greater.)
 
