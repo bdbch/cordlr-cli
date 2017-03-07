@@ -1,5 +1,5 @@
 {
-  "name": "cordlr",
+  "name": "cordlr-cli",
   "description": "A discord bot using plugins created by the community.",
   "version": "0.2.0",
   "license": "GPL-3.0",
