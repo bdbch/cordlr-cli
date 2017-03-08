@@ -8,13 +8,17 @@ function start (flags) {
   // Load configuration file
   let config = {}
   let pkg = {}
-  const configPath = path.resolve(process.cwd(), '.cordlrrc')
+
+  const configPath = path.resolve(process.cwd(), 'cordlr.json')
   const pkgPath = path.resolve(process.cwd(), 'package.json')
+
   try {
     config = require(configPath)
+    console.log(config)
   } catch (e) {
     if (e.code !== 'MODULE_NOT_FOUND') return log()(e)
   }
+
   try {
     pkg = require(pkgPath)
   } catch (e) {} // no error handling
@@ -27,6 +31,7 @@ function start (flags) {
   const uneditedConfig = Object.assign({}, config)
   Object.assign(config, flags)
   delete config._
+
   // add command-line plugins to config (if they weren't there yet)
   for (const plugin of flags._) {
     if (!config.plugins.includes(plugin)) {
