@@ -14,7 +14,6 @@ function start (flags) {
 
   try {
     config = require(configPath)
-    console.log(config)
   } catch (e) {
     if (e.code !== 'MODULE_NOT_FOUND') return log()(e)
   }
