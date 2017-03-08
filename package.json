@@ -3,7 +3,7 @@
   "description": "A discord bot using plugins created by the community.",
   "version": "0.2.0",
   "license": "GPL-3.0",
-  "repository": "devcord/cordlr",
+  "repository": "devcord/cordlr-cli",
   "main": "./bin/methods/start.js",
   "bin": "./bin/cordlr",
   "dependencies": {
@@ -37,7 +37,7 @@
     "easy"
   ],
   "bugs": {
-    "url": "https://github.com/Devcord/cordlr/issues"
+    "url": "https://github.com/Devcord/cordlr-cli/issues"
   },
-  "homepage": "https://github.com/Devcord/cordlr#readme"
+  "homepage": "https://github.com/Devcord/cordlr-cli#readme"
 }

@@ -13,7 +13,7 @@ npm install -g cordlr-cli
 ```
 (Requires Node v6 or greater.)
 
-Install experimental releases with `cordlr@next`.
+Install experimental releases with `cordlr-cli@next`.
 
 ## Documentation
 
