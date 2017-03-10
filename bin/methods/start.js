@@ -59,6 +59,6 @@ function start (flags) {
   bot.on('ready', log('Loaded successfully'))
 
   // Load loader
-  const loader = require(config.loader)
-  loader(bot, config, pkg)
+  const Loader = require(config.loader)
+  new Loader(bot, config, pkg)
 }
