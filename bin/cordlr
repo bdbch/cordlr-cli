@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 const minimist = require('minimist')
-const help = require('./methods/help')
-const version = require('./methods/version')
-const start = require('./methods/start')
+const Help = require('./methods/help')
+const Version = require('./methods/version')
+const Start = require('./methods/start')
 
 /**
  * Create bot using command line.
@@ -22,13 +22,13 @@ const flags = minimist(process.argv.slice(2), {
 
 function main () {
   // --help, -h
-  if (flags.help) return help()
+  if (flags.help) return new Help()
 
   // --version, -v
-  if (flags.version) return version()
+  if (flags.version) return new Version()
 
   // otherwise, start it!
-  start(flags)
+  return new Start(flags)
 }
 
 // Start CLI
