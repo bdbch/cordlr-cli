@@ -2,11 +2,11 @@
 const minimist = require('minimist')
 const Help = require('./methods/help')
 const Version = require('./methods/version')
-const Start = require('./methods/start')
+const Cordlr = require('./methods/start')
 
 /**
  * Create bot using command line.
- */
+**/
 
 // CLI data
 const flags = minimist(process.argv.slice(2), {
@@ -28,7 +28,7 @@ function main () {
   if (flags.version) return new Version()
 
   // otherwise, start it!
-  return new Start(flags)
+  return new Cordlr(flags)
 }
 
 // Start CLI
