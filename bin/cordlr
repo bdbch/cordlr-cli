@@ -6,7 +6,7 @@ const Start = require('./methods/start')
 
 /**
  * Create bot using command line.
- */
+**/
 
 // CLI data
 const flags = minimist(process.argv.slice(2), {

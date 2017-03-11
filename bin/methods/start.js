@@ -36,12 +36,12 @@ module.exports = class Cordlr {
   }
 
   start () {
-    // Initialize and load the bot and loader
+    // Initiate the Bot
     const bot = new Client()
-    bot.on('error', (e) => console.log(e))
+    bot.on('error', (e) => console.log(e)) // console.log on error
     bot.on('ready', () => console.log('Loaded successfully'))
 
-    // Load loader
+    // Initiate the Loader
     const Loader = require(this.config.loader)
     return new Loader(bot, this.config)
   }
