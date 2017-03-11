@@ -2,7 +2,7 @@ const { Client } = require('discord.js')
 const path = require('path')
 
 module.exports = class Cordlr {
-  constructor (flags) { 
+  constructor (flags) {
     this.flags = flags || ''
 
     // Get path to "cordlr config" file
