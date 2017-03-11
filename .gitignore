@@ -5,3 +5,5 @@ log
 *.pid
 npm-debug.log
 config/index.js
+.vscode
+cordlr.json
