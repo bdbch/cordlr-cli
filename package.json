@@ -1,7 +1,7 @@
 {
   "name": "cordlr-cli",
   "description": "A discord bot using plugins created by the community.",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "license": "GPL-3.0",
   "repository": "devcord/cordlr-cli",
   "main": "./bin/methods/start.js",
