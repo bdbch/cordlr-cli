@@ -1,13 +1,13 @@
 {
   "name": "cordlr-cli",
   "description": "A discord bot using plugins created by the community.",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "license": "GPL-3.0",
   "repository": "devcord/cordlr-cli",
   "main": "./bin/methods/start.js",
   "bin": "./bin/cordlr",
   "dependencies": {
-    "cordlr-loader": "^0.1.4",
+    "cordlr-loader": "^0.1.5",
     "discord.js": "^11.0.0",
     "log-cb": "^0.2.1",
     "minimist": "^1.2.0",
