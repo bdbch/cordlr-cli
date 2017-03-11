@@ -1,64 +1,48 @@
-module.exports = start
-const { writeFile } = require('fs')
-const path = require('path')
-const log = require('log-cb')
 const { Client } = require('discord.js')
+const path = require('path')
 
-function start (flags) {
-  // Load configuration file
-  let config = {}
-  let pkg = {}
+module.exports = class Cordlr {
+  constructor (flags) {
+    this.flags = flags || ''
 
-  const configPath = path.resolve(process.cwd(), 'cordlr.json')
-  const pkgPath = path.resolve(process.cwd(), 'package.json')
+    // Get path to "cordlr config" file
+    this.configPath = path.resolve(process.cwd(), 'cordlr.json')
 
-  try {
-    config = require(configPath)
-  } catch (e) {
-    if (e.code !== 'MODULE_NOT_FOUND') return log()(e)
-  }
-
-  try {
-    pkg = require(pkgPath)
-  } catch (e) {} // no error handling
-
-  // Set defaults
-  if (!config.loader) config.loader = 'cordlr-loader'
-  if (!config.plugins) config.plugins = []
-
-  // Add command-line options to config
-  const uneditedConfig = Object.assign({}, config)
-  Object.assign(config, flags)
-  delete config._
-
-  // add command-line plugins to config (if they weren't there yet)
-  for (const plugin of flags._) {
-    if (!config.plugins.includes(plugin)) {
-      config.plugins.push(plugin)
+    try {
+      this.config = require(this.configPath)
+    } catch (e) {
+      if (e.code === 'MODULE_NOT_FOUND') this.config = {}
+      else return console.log(e)
     }
+
+    // If Token doesn't exist, return error
+    if (!this.config.token) return console.log('No token specified')
+
+    // Set default values if empty
+    if (!this.config.loader) this.config.loader = this.flags.loader || 'cordlr-loader'
+    if (!this.config.plugins) this.config.plugins = this.flags.plugins || []
+    if (!this.config.prefix) this.config.prefix = this.flags.prefix || '!'
+
+    // Add plugin(s) from command-line flags to "cordlr config" file
+    if (this.flags.plugins) {
+      for (const plugin of this.flags.plugins) {
+        if (!this.config.plugins.includes(plugin)) {
+          this.config.plugins.push(plugin)
+        }
+      }
+    }
+
+    this.start()
   }
 
-  // Attach method to write config to file
-  config.writeToFile = (property) => new Promise((resolve, reject) => {
-    if (!config[property]) return reject(new Error(`Cannot write property "${property}"`))
-    uneditedConfig[property] = config[property]
-    writeFile(configPath, JSON.stringify(uneditedConfig, null, 2), (err) => {
-      if (err) reject(err)
-      else resolve()
-    })
-  })
+  start () {
+    // Initialize and load the bot and loader
+    const bot = new Client()
+    bot.on('error', (e) => console.log(e))
+    bot.on('ready', () => console.log('Loaded successfully'))
 
-  // check token in config
-  if (!config.token) {
-    throw new Error('No token specified')
+    // Load loader
+    const Loader = require(this.config.loader)
+    return new Loader(bot, this.config)
   }
-
-  // Create bot
-  const bot = new Client()
-  bot.on('error', log.err())
-  bot.on('ready', log('Loaded successfully'))
-
-  // Load loader
-  const Loader = require(config.loader)
-  new Loader(bot, config, pkg)
 }
