@@ -1,11 +1,16 @@
-## Documentation
+## Cordlr Documentation
 
- - [Getting Started](getting-started.md)
- - [Configuration](configuration.md)
- - [Plugins](plugins.md)
- - [Loaders](loaders.md)
- - [Packages](packages.md)
- - [Tips and Tricks](tips-and-tricks.md)
- - [Contributing](../CONTRIBUTING.md)
+#### General
+- [Getting Started](getting-started.md)
+- [Installing Plugins](plugins.md)
+- [Configuring the Server](configuration.md)
 
-If you are new to cordlr, see ["Getting Started"](getting-started.md)
+#### For Developers
+- [Loaders](loaders.md)
+- [Write a plugin](write-a-plugin.md)
+- [Cordlr Plugin](cordlr-plugin.md)
+- [Hooks](hooks.md)
+- [Contributing](../CONTRIBUTING.md)
+
+#### Other
+- [Tips and Tricks](tips-and-tricks.md)
