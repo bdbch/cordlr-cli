@@ -108,6 +108,12 @@ cordlr-cli
 
 Try out the command on your server via `!roles`, `!addrole JoinMe` and `!removerole JoinMe`.
 
+## Using the Server Boilerplate
+
+We also have a boilerplate for new bot servers you can use which already contains the base set of plugins and already existing congfiguration files.
+
+[Install the boilerplate here](https://github.com/Devcord/cordlr-server-boilerplate)
+
 ## More Informations
 
 There is even more to learn. Check the [rest of the documentation](./) to learn more.
