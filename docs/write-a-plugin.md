@@ -94,6 +94,8 @@ Okay cool! Now the bot knows that a command called `!ping` exists and will send 
 * `description` - For help plugins etc. Will explain what this command does.
 * `permissions` - An array containing [Discord Permissions](https://discordapp.com/developers/docs/topics/permissions) to restrict commands to different userlevels
 
+You also saw the arguments *message*, **args** and **flags** on the command function? These always have to be there and contain the **Discord.js message object**, passed arguments and passed flags.
+
 Lets make the pong function only usable by server administrators!
 
 ```js
