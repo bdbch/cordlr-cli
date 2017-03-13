@@ -4,22 +4,17 @@
 
 > A discord bot using plugins created by the community.
 
-Cordlr is a highly customizable bot for [Discord](https://discordapp.com/) that uses [plugins created by the community](https://www.npmjs.com/browse/keyword/cordlr), so that you can have a bot perfect for your server with only a small amount of effort.  Read the ["Getting Started"](docs/getting-started.md) page to learn how to use cordlr.
+Cordlr is a new way to create **customized Discord bots** tailored for your needs. You don't want that anime plugin? Don't install it. You need more management plugins? Install it! You want to change strings of a plugin? Do it in the configuration.
 
-## Installation
+Everything in Cordlr is customizable and can be changed by everyone. Developers can create plugins which can be installed via drag-and-drop or NPM.
 
-```sh
-npm install -g cordlr-cli
-```
-(Requires Node v6 or greater.)
+Sounds good? Lets get started!
 
-Install experimental releases with `cordlr-cli@next`.
+**Requirements**
+* Node.js 6.0 or higher
+* *Recommendation* - [pm2](https://www.npmjs.com/package/pm2) or [Forever](https://www.npmjs.com/package/forever)
 
-## Documentation
-
-See more documentation in the [`docs/`](docs/) folder.
-
-See ["Getting Started"](docs/getting-started.md) if you are new to Cordlr.
+### [Read the Documentation](docs/)
 
 ## License
 Devcord © [GPLv3](LICENSE)

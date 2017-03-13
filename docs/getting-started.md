@@ -1,87 +1,76 @@
-## Getting Started
+# Getting Started
 
-When you have [installed cordlr](../README.md#Installation), run the following:
+This guide will help you to get started with Cordlr and get your first bot up and running in a few minutes. You will need a Node.js installation on your server and we recommend using [pm2](https://www.npmjs.com/package/pm2) or [forever](https://www.npmjs.com/package/forever) for better uptime.
 
-```sh
-cordlr
-```
+## Setup
 
-This starts the bot.  But, you will most likely see this:
+Cordlr is installed via NPM. That way updates can be done via the Command Line and your server can be started with the same binary.
 
-```sh
-Error: No plugins
-```
+You can install Cordlr via `npm i cordlr-cli -g` for the stable version or `npm i Devcord/cordlr-cli -g` to install the latest version from Github.
 
-Cordlr is a bot based around [plugins](plugins.md), so we need to install and load some for it to do anything.
+## Creating a bot server
 
-## Finding plugins
+Every Cordlr server should live in its own folder. For this example we're creating a folder at `~/discord-servers/` called `mybot`. Change into the directory via `cd ~/discord-servers/mybot` and initialise a npm registry via `npm init` and answer the npm init instruction questions.
 
-You can search for plugins by
+**Installing the required packages**
 
- - [Using the "cordlr-plugin" keyword on npm](https://www.npmjs.com/browse/keyword/cordlr)
- - [Searching "cordlr" on GitHub](https://github.com/search?utf8=%E2%9C%93&q=cordlr)
- - [Seeing the `awesome-cordlr` repo](https://github.com/jamen/awesome-cordlr) (a maintained list of plugins)
- - [Joining the Devcord server](https://discordapp.com/invite/uDXyNAR) and asking about cordlr.
+After initialising the server as a NPM package, you can now install npm packages. We will use the packages `cordlr-help2`, `cordlr-roles` and `cordlr-giphy` for this example.
 
-Plugins will have their own instructions on how to install.  Most likely using `npm install`.
+Run `npm i cordlr-help2 cordlr-roles cordlr-giphy --save` for fixed versions or `npm i cordlr-help2@latest cordlr-roles@latest cordlr-giphy@latest --save` to **always** install the latest versions.
 
-Remember to save plugins you install as dependencies inside a `package.json` file, so your bot can be easily saved and deployed somewhere else.
+**Configuration File**
 
-## Loading plugins
+Now create a new file called `cordlr.json` which will be used by Cordlr to start the Bot and configure plugins.
 
-Loading plugins depends on [your loader](loader.md), but since this is a getting started guide I'll assume you are using the default loader.
-
-You can use two methods to load plugins by default.  
-
- 1. Adding a `plugins` array to your `package.json`:
-
-    ```js
-    {
-      "name": "my-bot",
-      "description": "Blah foo bar ..."
-      "plugins": [
-        "cordlr-help",
-        "cordlr-cleverbot"
-        "chordlr"
-        "./local-plugin"
-      ],
-      "dependencies": {
-        "cordlr-help": "v1",
-        "cordlr-cleverbot": "v0.2",
-        // ...
-      }
-    }
-    ```
- 2. Using the command line input:
-
-    ```sh
-    cordlr 'cordlr-help' 'cordlr-cleverbot' 'chordlr' './local-plugin'
-    ```
-
-These array items are loaded as if they were `require(e)`'ed, which means you can do local plugins alongside your dependencies.
-
-## Logging your bot in
-
-The final step is to get your bot logged in to discord.  With the default loader you can use `"token"` or `"email"` and `"password"`:
+Copy the following content into the file:
 
 ```js
 {
-  "token": "<access token here>",
-  // Or use credentials:
-  "email": "foo@example.com",
-  "password": "12_foo_bar"
+  "token":"YourTokenHere",
+  "prefix":"!",
+  "loader":"cordlr-loader",
+  "plugins":[
+    "cordlr-help2",
+    "cordlr-roles",
+    "cordlr-giphy"
+  ]
 }
 ```
 
-Make sure your bot is invited to the guilds you want it to work.
+Now replace the token `YourTokenHere` with your bots token you can receive from the [Discord Developers](https://discordapp.com/developers/applications/me) page.
 
-## It's Alive!
+## Starting the bot
 
-Your bot should now have functionality from the plugins you've added.  Execute commands in chat using `$` as a prefix, for example:
+Now you can start up your bot. Make sure your terminals current directory is your bots directory. Now run `cordlr-cli` and you will see a list of all loaded plugins and a message saying that the bot finished loading.
 
+Now go to your server and try `!help` and `!plugins` to get a list of commands and plugins you can use.
+
+## Configuring the `cordlr-roles` plugin
+
+`cordlr-roles` won't allow any role to be assigned via `!addrole` or `!removerole` so you have to whitelist them. Create a Role on your Discord server called **JoinMe** and open your `cordlr.json`. Add the following configuration to your file:
+
+```js
+{
+  "token":"YourTokenHere",
+  "prefix":"!",
+  "loader":"cordlr-loader",
+  "plugins":[
+    "cordlr-help2",
+    "cordlr-roles",
+    "cordlr-giphy"
+  ],
+  "cordlr-roles": {
+    "whitelist": [
+      "JoinMe"
+    ]
+  }
+}
 ```
-$help
-```
 
- - See ["Configuration"](configuration.md) for more info on customizing.
- - See ["Plugins"](plugins.md) for info on creating plugins.
+As you can see we added a configuration key called **cordlr-roles** which is going to be loaded via the plugin. In there we added the role **JoinMe** in the `whitelist` wo users on your server can assign this role via commands.
+
+Save the file and run `cordlr-cli`. Try out the command on your server via `!roles`, `!addrole JoinMe` and `!removerole JoinMe`.
+
+## More Informations
+
+There is even more to learn. Check the [rest of the documentation](./) to learn more.
