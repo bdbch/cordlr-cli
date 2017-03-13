@@ -6,17 +6,48 @@ This guide will help you to get started with Cordlr and get your first bot up an
 
 Cordlr is installed via NPM. That way updates can be done via the Command Line and your server can be started with the same binary.
 
-You can install Cordlr via `npm i cordlr-cli -g` for the stable version or `npm i Devcord/cordlr-cli -g` to install the latest version from Github.
+You can install Cordlr via 
+```sh
+npm i cordlr-cli -g
+``` 
+
+for the stable version or 
+```sh
+npm i Devcord/cordlr-cli -g
+```
+to install the latest version from Github.
 
 ## Creating a bot server
 
-Every Cordlr server should live in its own folder. For this example we're creating a folder at `~/discord-servers/` called `mybot`. Change into the directory via `cd ~/discord-servers/mybot` and initialise a npm registry via `npm init` and answer the npm init instruction questions.
+Every Cordlr server should live in its own folder. For this example we're creating a folder at `~/discord-servers/` called `mybot`. Change into the directory via 
+```sh
+cd ~/discord-servers/mybot
+```
+
+and initialise a npm registry via 
+
+```sh
+npm init
+```
+
+and answer the npm init instruction questions.
 
 **Installing the required packages**
 
-After initialising the server as a NPM package, you can now install npm packages. We will use the packages `cordlr-help2`, `cordlr-roles` and `cordlr-giphy` for this example.
+After initialising the server as a NPM package, you can now install npm packages. We will use the packages **cordlr-help2**, **cordlr-roles** and **cordlr-giphy** for this example.
 
-Run `npm i cordlr-help2 cordlr-roles cordlr-giphy --save` for fixed versions or `npm i cordlr-help2@latest cordlr-roles@latest cordlr-giphy@latest --save` to **always** install the latest versions.
+Run 
+```sh
+npm i cordlr-help2 cordlr-roles cordlr-giphy --save
+```
+
+for fixed versions or 
+
+```sh
+npm i cordlr-help2@latest cordlr-roles@latest cordlr-giphy@latest --save
+``` 
+
+to **always** install the latest versions.
 
 **Configuration File**
 
@@ -69,7 +100,13 @@ Now go to your server and try `!help` and `!plugins` to get a list of commands a
 
 As you can see we added a configuration key called **cordlr-roles** which is going to be loaded via the plugin. In there we added the role **JoinMe** in the `whitelist` wo users on your server can assign this role via commands.
 
-Save the file and run `cordlr-cli`. Try out the command on your server via `!roles`, `!addrole JoinMe` and `!removerole JoinMe`.
+Save the file and run
+
+```sh
+cordlr-cli
+``` 
+
+Try out the command on your server via `!roles`, `!addrole JoinMe` and `!removerole JoinMe`.
 
 ## More Informations
 
