@@ -7,8 +7,8 @@
 
 #### For Developers
 - [Loaders](loaders.md)
-- [Cordlr Plugin](cordlr-plugin.md)
 - [Write a plugin](write-a-plugin.md)
+- [Cordlr Plugin](cordlr-plugin.md)
 - [Hooks](hooks.md)
 - [Fetch Configuration](fetch-configuration.md)
 - [Contributing](../CONTRIBUTING.md)
