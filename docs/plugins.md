@@ -1,51 +1,35 @@
-## Plugins
+# Installing Plugins
 
-Plugins depend entirely on [what loader you use](loader.md).  Here, I assume you use the default loader or something compatible.
+## What is a Plugin?
 
-## What is a plugin?
+A Cordlr plugin is a plugin feature you can add to your bot. Plugins can register new commands, log information from your server, automate tasks and more.
 
-These default plugins are functions that get called with `bot` and `config`, shared between all of them.  Info like `name`, `description`, etc. is taken from the plugin's `package.json` if it exists, and otherwise it looks for properties on the function like `plugin.name`, `plugin.description`, etc.  For example:
+They can be customized via configuration files and are extendable. Cordlr plugins are always prefixed by the prefix **cordlr-**.
 
-```js
-plugin.name = 'foo'
-plugin.description = 'Bar blah qux'
+## How to install plugins via npm
 
-function plugin (bot, config) {
-  // ...
-}
+You can install a plugin via npm if your server directory was initialised as a npm package via `npm init`. This allows easy version control via strict versions or installing the latest versions of all plugins.
+
+You can install a plugin via
+
+```sh
+npm install cordlr-plugin-name --save
 ```
 
-From here, the bot can bind it's own events on `bot`, and use data provided from `config`, or handle commands.
+for the latest version as a strict version number or
 
-## How can I handle commands?
-
-Cordlr provides a special syntax for command handling.  Just return a function at the end of your plugin, and optionally set a `command` (will default to the function's name):
-
-```js
-myPlugin.command = 'foo'
-// ...
-
-function myPlugin (bot, config) {
-  return function run (message, args, flags) {
-    // ...
-  }
-}
+```sh
+npm install cordlr-plugin-name@latest --save
 ```
 
- - `message`: A [`Message` object](http://hydrabolt.github.io/discord.js/#!/docs/tag/master/class/Message) from discord.js that provides all info.
- - `args`: The arguments of `message.content` parsed with [`minimist`](https://npmjs.com/minimist).
- - `flags`: The flags of `message.content` parsed with `minimist`
- - Keep in mind you also still have access to `bot` and `config`, and anything you define in the outer scope.
+to install **always the latest version** of a plugin.
 
-Here is what the plugin would look like being executed (with it's usage):
+## How to install plugins manually
+
+You can also install plugins manually. For that create a **plugins** folder in your bots directory and put a plugin folder in the plugins folder so it looks like this
+
 ```
-$foo "qux qux" --bar
+path/to/server/folder/plugins/cordlr-plugin-name
 ```
-(Provided `"prefix": "$"`, the default)
 
-## That's it
-
-From here you can program your plugin however you'd like.  
-
- - See ["Packages"](packages.md) for common practices in naming and curating cordlr packages.
- - See ["Configuration"](configuration.md) for more info on how users can configure plugins with the default loader.
+The plugin will be loaded from here before the node_modules folder, so this is great for testing a plugin before installing it via npm.
