@@ -19,3 +19,5 @@ class MyPlugin extends CordlrPlugin {
   }
 }
 ```
+
+## [Read the CordlrPlugin Docs](https://github.com/Devcord/cordlr-plugin/tree/master/docs)
