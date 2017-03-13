@@ -74,6 +74,11 @@ Now replace the token `YourTokenHere` with your bots token you can receive from 
 
 Now you can start up your bot. Make sure your terminals current directory is your bots directory. Now run `cordlr-cli` and you will see a list of all loaded plugins and a message saying that the bot finished loading.
 
+Before your bot is ready, make sure to invite him with all required permissions.
+
+* [Read more about inviting bots to your server here](https://discordapp.com/developers/docs/topics/oauth2)
+* [Read more about adding permissions to your bot here](https://discordapp.com/developers/docs/topics/permissions)
+
 Now go to your server and try `!help` and `!plugins` to get a list of commands and plugins you can use.
 
 ## Configuring the `cordlr-roles` plugin
