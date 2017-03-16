@@ -16,7 +16,10 @@ module.exports = class Cordlr {
     }
 
     // If Token doesn't exist, return error
-    if (!this.config.token) return console.log('No token specified')
+    if (!this.config.token) {
+      if (process.env.CORDLR_TOKEN) this.config.token = process.env.CORDLR_TOKEN
+      else return console.log('No token specified')
+    }
 
     // Set default values if empty
     if (!this.config.loader) this.config.loader = this.flags.loader || 'cordlr-loader'
