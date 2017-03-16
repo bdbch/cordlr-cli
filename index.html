@@ -30,10 +30,10 @@
             <ul class="navigation-menu-list">
               <li class="navigation-menu-item"><a class="navigation-menu-link" data-scroll href="#about">About</a></li>
               <li class="navigation-menu-item"><a class="navigation-menu-link" data-scroll href="#install">Installation</a></li>
-              <li class="navigation-menu-item"><a class="navigation-menu-link" data-scroll href="#usage">Usage</a></li>
+              <li class="navigation-menu-item"><a class="navigation-menu-link" data-scroll href="#plugins">Plugins</a></li>
               <li class="navigation-menu-item"><a class="navigation-menu-link" data-scroll href="#contributors">Contributors</a></li>
               <li class="navigation-menu-item"><a class="navigation-menu-link" data-scroll href="#license">License</a></li>
-              <li class="navigation-menu-item"><a class="navigation-menu-link" href="https://www.npmjs.com/search?q=cordlr-" target="_blank">Plugins</li>
+              <li class="navigation-menu-item"><a class="navigation-menu-link" href="https://www.npmjs.com/search?q=cordlr-" target="_blank">Plugins@npm</li>
               <li class="navigation-menu-item"><a class="navigation-menu-link" href="https://github.com/Devcord/cordlr">Github</a></li>
             </ul>
             <div class="navigation-menu-github text-center">
@@ -63,23 +63,34 @@
             <h3>Installation</h3>
             <p>In this demonstration we're using <code class="codeblock">nave</code> for managing the node environment.</p>
             <ul>
-              <li><code class="codeblock">nave use 6</code> - installs latest node version for major 6</li>
-              <li><code class="codeblock">npm install cordlr -g</code> - installs the cordlr binary globally or <code class="codeblock">npm install -g devcord/cordlr</code> for the latest stable commit</li>
-              <li><code class="codeblock">mkdir mybot</code> - create a folder for your bot</li>
-              <li><code class="codeblock">cd mybot</code> - change directory into <em>mybot</em></li>
-              <li><code class="codeblock">cordlr</code> - inits the cordlr bot without any modules</li>
-              <li><code class="codeblock">cordlr install <em>modulename</em></code> - installs a cordlr module. is equal with <code class="codeblock">npm install cordlr-<em>modulename</em></code></li>
-              <li><a href="https://github.com/Devcord/cordlr/blob/master/docs/getting-started.md" target="_blank">Read the <em>getting started</em> on github</a></li>
+              <li><code class="codeblock">nave use 6</code> or <code class="codeblock">nave use auto</code> - installs latest node version for major 6 or the naverc version</li>
+              <li><code class="codeblock">npm install cordlr-cli -g</code> - installs the cordlr binary globally or <code class="codeblock">npm install -g devcord/cordlr-cli</code> for the latest stable commit</li>
             </ul>
+            <p>If you want to learn more about setting up a bot, consider reading our <a href="https://github.com/Devcord/cordlr-cli/blob/master/docs/getting-started.md" target="_blank" title="Get started">Get Started</a> guide.</p>
+            <p><a href="https://github.com/Devcord/cordlr-server-boilerplate" title="Server Boilerplate">We also provide a server boilerplate so you can get started with your bot even faster.</a></p>
           </section>
 
-          <section class="content content-usage" id="usage">
-            <h2>Usage</h2>
-            <h3>A basic ping/pong module for Cordlr</h3>
-            <script async src="//jsfiddle.net/dnz5vv98/embed/js/dark/"></script>
-            <hr class="trimline">
-            <h3>A module using flags and/or arguments</h3>
-            <script async src="//jsfiddle.net/fpkavxdu/embed/js/dark/"></script>
+          <section class="content content-usage" id="plugins">
+            <h2>Plugins</h2>
+            <p>We already have a small list of plugins developed and ready for your server! Check them out here. You can install them for example via <br><code class="codeblock">npm i cordlr-roles --save</code></p>
+            <ul>
+              <li>
+                <a href="https://github.com/Devcord/cordlr-roles" target="_blank" title="Cordlr Roles">cordlr-roles</a> - Role Manager for Cordlr
+              </li>
+              <li>
+                <a href="https://github.com/Devcord/cordlr-ddg" target="_blank" title="Cordlr DDG">cordlr-ddg</a> - DuckDuckGo Search for Cordlr
+              </li>
+              <li>
+                <a href="https://github.com/Devcord/cordlr-kontrolla" target="_blank" title="Cordlr Kontrolla">cordlr-kontrolla</a> - Bot Control Plugin for Cordlr
+              </li>
+              <li>
+                <a href="https://github.com/db2k/cordlr-giphy" target="_blank" title="Cordlr Giphy">cordlr-giphy</a> - Random GIPHY links for Cordlr
+              </li>
+              <li>
+                <a href="https://github.com/Sven65/Cordlr-Cats" target="_blank" title="Cordlr Cats">cordlr-cats</a> - Random Cat images for Cordlr
+              </li>
+            </ul>
+            <p>If you want to write your own plugin for cordlr, <a href="https://github.com/Devcord/cordlr-cli/blob/master/docs/plugins.md" title="Plugin Guide">check out our guide</a>.</p>
           </section>
 
           <section class="content content-contributors" id="contributors">
@@ -124,6 +135,34 @@
                 <div class="contributors-list-avatar"><a href="https://github.com/Dragory" target="_blank"><img class="image" src="https://avatars0.githubusercontent.com/u/2606411?v=3&s=466"></a></div>
                 <div class="contributors-list-details">
                   <h3 class="contributors-list-headline"><a href="https://github.com/Dragory" target="_blank">@Dragory</a></h3>
+                  <p class="contributors-list-detail">No description</p>
+                </div>
+              </li>
+              <li class="contributors-list-item clearfix">
+                <div class="contributors-list-avatar"><a href="https://github.com/ciruz" target="_blank"><img class="image" src="https://avatars0.githubusercontent.com/u/987947?v=3&s=466"></a></div>
+                <div class="contributors-list-details">
+                  <h3 class="contributors-list-headline"><a href="https://github.com/ciruz" target="_blank">@ciruz</a></h3>
+                  <p class="contributors-list-detail">No description</p>
+                </div>
+              </li>
+              <li class="contributors-list-item clearfix">
+                <div class="contributors-list-avatar"><a href="https://github.com/AlphaStyle" target="_blank"><img class="image" src="https://avatars0.githubusercontent.com/u/13605163?v=3&s=466"></a></div>
+                <div class="contributors-list-details">
+                  <h3 class="contributors-list-headline"><a href="https://github.com/AlphaStyle" target="_blank">@AlphaStyle</a></h3>
+                  <p class="contributors-list-detail">No description</p>
+                </div>
+              </li>
+              <li class="contributors-list-item clearfix">
+                <div class="contributors-list-avatar"><a href="https://github.com/troygoode" target="_blank"><img class="image" src="https://avatars0.githubusercontent.com/u/72844?v=3&s=466"></a></div>
+                <div class="contributors-list-details">
+                  <h3 class="contributors-list-headline"><a href="https://github.com/troygoode" target="_blank">@troygoode</a></h3>
+                  <p class="contributors-list-detail">No description</p>
+                </div>
+              </li>
+              <li class="contributors-list-item clearfix">
+                <div class="contributors-list-avatar"><a href="https://github.com/Sven65" target="_blank"><img class="image" src="https://avatars0.githubusercontent.com/u/10225982?v=3&s=466"></a></div>
+                <div class="contributors-list-details">
+                  <h3 class="contributors-list-headline"><a href="https://github.com/Sven65" target="_blank">@Sven65</a></h3>
                   <p class="contributors-list-detail">No description</p>
                 </div>
               </li>
