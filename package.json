@@ -6,7 +6,7 @@
   "repository": "devcord/cordlr-cli",
   "main": "./bin/methods/start.js",
   "bin": {
-    "cordlr": "./bin/cordlr",
+    "cordlr": "./bin/cordlr"
   },
   "dependencies": {
     "cordlr-loader": "~0.1.7",
