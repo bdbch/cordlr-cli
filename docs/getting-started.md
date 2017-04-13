@@ -72,7 +72,7 @@ Now replace the token `YourTokenHere` with your bots token you can receive from 
 
 ## Starting the bot
 
-Now you can start up your bot. Make sure your terminals current directory is your bots directory. Now run `cordlr-cli` and you will see a list of all loaded plugins and a message saying that the bot finished loading.
+Now you can start up your bot. Make sure your terminals current directory is your bots directory. Now run `cordlr` and you will see a list of all loaded plugins and a message saying that the bot finished loading.
 
 Before your bot is ready, make sure to invite him with all required permissions.
 
