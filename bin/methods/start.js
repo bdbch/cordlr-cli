@@ -22,7 +22,6 @@ module.exports = class Cordlr {
     }
 
     // Set default values if empty
-    if (!this.config.loader) this.config.loader = this.flags.loader || 'cordlr-loader'
     if (!this.config.plugins) this.config.plugins = this.flags.plugins || []
     if (!this.config.prefix) this.config.prefix = this.flags.prefix || '!'
 
@@ -45,7 +44,7 @@ module.exports = class Cordlr {
     bot.on('ready', () => console.log('Loaded successfully'))
 
     // Initiate the Loader
-    const Loader = require(this.config.loader)
+    const Loader = require('../../loader/index')
     return new Loader(bot, this.config)
   }
 }

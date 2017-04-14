@@ -15,8 +15,7 @@ const flags = minimist(process.argv.slice(2), {
     help: 'h',
     version: 'v',
     plugins: ['p', 'plugin'],
-    token: 't',
-    loader: 'l'
+    token: 't'
   }
 })
 

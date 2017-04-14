@@ -9,11 +9,11 @@
     "cordlr": "./bin/cordlr"
   },
   "dependencies": {
-    "cordlr-loader": "~0.1.7",
     "discord.js": "^11.0.0",
     "log-cb": "^0.2.1",
     "minimist": "^1.2.0",
-    "resolve": "^1.1.7"
+    "resolve": "^1.1.7",
+    "spawn-args": "^0.2.0"
   },
   "engines": {
     "node": ">=6"
