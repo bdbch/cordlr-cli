@@ -1,0 +1,28 @@
+[
+  {
+    "name": "General Commands",
+    "commands": [
+      {
+        "name": "help",
+        "description": "Bot Commands and Informations"
+      }
+    ]
+  },
+  {
+    "name": "Role Commands",
+    "commands": [
+      {
+        "name": "role add \"rolename\"",
+        "description": "Adds a specific role to your profile."
+      },
+      {
+        "name": "role remove \"rolename\"",
+        "description": "Removes a specific role from your profile."
+      },
+      {
+        "name": "role list",
+        "description": "List all available roles."
+      }
+    ]
+  }
+]
