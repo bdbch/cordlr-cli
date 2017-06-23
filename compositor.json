@@ -1,0 +1,92 @@
+{
+  "name": "Devcord/cordlr-cli",
+  "version": "0.1.4",
+  "libraries": {
+    "xv": "^1.1.25"
+  },
+  "title": "Cordlr CLI",
+  "branch": "master",
+  "style": {
+    "name": "Swiss",
+    "componentSet": {
+      "nav": "nav/BasicNav",
+      "header": "header/SwissHeader",
+      "article": "article/SwissArticle",
+      "footer": "footer/BasicFooter"
+    },
+    "fontFamily": "\"Helvetica Neue\", Helvetica, Arial, sans-serif",
+    "heading": {
+      "fontWeight": 700,
+      "letterSpacing": "-0.01em"
+    },
+    "layout": {
+      "fluid": true
+    },
+    "colors": {
+      "text": "#000",
+      "background": "#fff",
+      "primary": "#05a",
+      "secondary": "#444",
+      "highlight": "#f30",
+      "border": "#ccc",
+      "muted": "#eee"
+    }
+  },
+  "content": [
+    {
+      "component": "nav",
+      "links": [
+        {
+          "href": "https://devcord.github.io/cordlr-cli/",
+          "text": "Home"
+        },
+        {
+          "href": "https://github.com/Devcord/cordlr-cli",
+          "text": "GitHub"
+        },
+        {
+          "href": "https://npmjs.com/package/cordlr-cli",
+          "text": "npm"
+        }
+      ]
+    },
+    {
+      "component": "header",
+      "heading": "cordlr-cli",
+      "subhead": "Discord Bot Framework written with Discord.js",
+      "children": [
+        {
+          "component": "ui/TweetButton",
+          "text": "cordlr-cli: Discord Bot Framework written with Discord.js",
+          "url": "https://devcord.github.io/cordlr-cli/"
+        },
+        {
+          "component": "ui/GithubButton",
+          "user": "Devcord",
+          "repo": "cordlr-cli"
+        }
+      ],
+      "text": "v0.4.0"
+    },
+    {
+      "component": "article",
+      "metadata": {
+        "source": "github.readme"
+      },
+      "html": "<p><a href=\"https://gitter.im/Devcord/cordlr\"><img src=\"https://img.shields.io/badge/GITTER-join%20chat-green.svg\"></a></p>\n<p><img src=\"http://i.imgur.com/GPVoYNk.jpg\"></p>\n<blockquote>\n<p>A discord bot using plugins created by the community.</p>\n</blockquote>\n<p>Cordlr is a new way to create <strong>customized Discord bots</strong> tailored for your needs. You don&apos;t want that anime plugin? Don&apos;t install it. You need more management plugins? Install it! You want to change strings of a plugin? Do it in the configuration.</p>\n<p>Everything in Cordlr is customizable and can be changed by everyone. Developers can create plugins which can be installed via drag-and-drop or NPM.</p>\n<p>Sounds good? Lets get started!</p>\n<p><strong>Requirements</strong></p>\n<ul>\n<li>Node.js 6.0 or higher</li>\n<li><em>Recommendation</em> - <a href=\"https://www.npmjs.com/package/pm2\">pm2</a> or <a href=\"https://www.npmjs.com/package/forever\">Forever</a></li>\n</ul>\n<h3><a href=\"docs/\">Read the Documentation</a></h3>\n<h2>License</h2>\n<p>Devcord &#xA9; <a href=\"LICENSE\">GPLv3</a></p>\n"
+    },
+    {
+      "component": "footer",
+      "links": [
+        {
+          "href": "https://github.com/Devcord/cordlr-cli",
+          "text": "GitHub"
+        },
+        {
+          "href": "https://github.com/Devcord",
+          "text": "Devcord"
+        }
+      ]
+    }
+  ]
+}
