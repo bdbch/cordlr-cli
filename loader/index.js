@@ -30,7 +30,7 @@ class CordlrLoader {
     }
 
     this.bot.login(this.config.token)
-    .then(() => this.bot.emit('loaded'), e => {})
+      .then(() => this.bot.emit('loaded'), e => {})
 
     this.bot.on('message', (message) => {
       this.handleMessage(message)
@@ -69,7 +69,7 @@ class CordlrLoader {
   }
 
   getPluginData () {
-    let pluginData = this.pluginsLoaded.map(function (plugin) {
+    const pluginData = this.pluginsLoaded.map((plugin) => {
       return {
         'name': plugin.name || '',
         'description': plugin.description || '',
@@ -81,7 +81,7 @@ class CordlrLoader {
       return plugin.commands || []
     })
 
-    for (let plugin of this.pluginsLoaded) {
+    for (const plugin of this.pluginsLoaded) {
       // HOOK: Plugin Data
       if (plugin.hooks && plugin.hooks.pluginData && typeof plugin[plugin.hooks.pluginData] === 'function') {
         plugin[plugin.hooks.pluginData](pluginData)
@@ -124,7 +124,7 @@ class CordlrLoader {
 
       const request = this.getPluginCommand(command)
       if (request) {
-        if (message.member.hasPermissions(request.permissions)) {
+        if (message.member.hasPermission(request.permissions)) {
           this.scheduledCommands.push({
             'object': request.plugin,
             'command': request.plugin.commands[request.command].function,
@@ -141,7 +141,7 @@ class CordlrLoader {
             }, 1000)
           }
         } else {
-          message.author.sendMessage('Sorry, but you are not allowed to run the command **' + command + '**')
+          message.author.send(`Sorry, but you are not allowed to run the command ** ${command} **`)
         }
       }
     }
