@@ -1,6 +1,4 @@
 #!/usr/bin/env node
-const minimist = require('minimist')
-const Help = require('./methods/help')
 const Version = require('./methods/version')
 const Start = require('./methods/start')
 
@@ -8,27 +6,45 @@ const Start = require('./methods/start')
  * Create bot using command line.
  **/
 
-// CLI data
-const flags = minimist(process.argv.slice(2), {
-  alias: {
-    prefix: 'x',
-    help: 'h',
-    version: 'v',
-    plugins: ['p', 'plugin'],
-    token: 't'
-  }
-})
+// CLI Data
+require('yargs') // eslint-disable-line
+  .usage('$0 [command, [options, [values]]]')
+  .command({
+    command: 'start',
+    aliases: ['s'],
+    desc: 'Start the bot',
+    builder: (yargs) => {
+      yargs.options({
+        'prefix': {
+          alias: 'x',
+          describe: 'Prefix to trigger commands',
+          type: 'string'
+        },
+        'token': {
+          alias: 't',
+          describe: 'Discord API Token',
+          type: 'string'
+        },
+        'plugins': {
+          alias: 'p',
+          describe: 'Array of plugins to load',
+          type: 'array'
+        }
+      })
+    },
+    handler: (argv) => {
+      if (argv) return new Start({token: argv.token, prefix: argv.prefix})
+    }
+  })
+  .command({
+    command: 'version',
+    desc: 'Show package version',
+    handler: (argv) => {
+      if (argv) return new Version()
+    }
+  })
+  .example('$0 start -t <token> -p <plugins> -x <prefix>')
+  .example('$0 version')
+  .help('help')
+  .argv
 
-const main = () => {
-  // --help, -h
-  if (flags.help) return new Help()
-
-  // --version, -v
-  if (flags.version) return new Version()
-
-  // otherwise, start it!
-  return new Start(flags)
-}
-
-// Start CLI
-main()
