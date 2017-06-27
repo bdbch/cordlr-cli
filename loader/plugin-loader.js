@@ -1,4 +1,5 @@
 const resolve = require('resolve')
+const helpPlugin = require('./core-plugins.js')
 
 module.exports = class PluginLoader {
   constructor (config) {
@@ -36,12 +37,13 @@ module.exports = class PluginLoader {
 
       return plugins
     }, [])
+
+    this.loadedPlugins.push(helpPlugin)
   }
 
   registerPluginClasses (cordlrObject) {
     this.registeredPlugins = this.loadedPlugins.map((Plugin) => {
       const pluginClass = new Plugin(this.bot, this.config, cordlrObject)
-
       if (pluginClass) {
         console.log('\n--- CORDLR HAS LOADED A PLUGIN ---')
         console.log(`Plugin Name:  ${pluginClass.name}`)
