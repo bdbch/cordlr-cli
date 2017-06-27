@@ -44,6 +44,7 @@ module.exports = class PluginLoader {
   registerPluginClasses (cordlrObject) {
     this.registeredPlugins = this.loadedPlugins.map((Plugin) => {
       const pluginClass = new Plugin(this.bot, this.config, cordlrObject)
+
       if (pluginClass) {
         console.log('\n--- CORDLR HAS LOADED A PLUGIN ---')
         console.log(`Plugin Name:  ${pluginClass.name}`)
