@@ -6,14 +6,15 @@
   "repository": "devcord/cordlr-cli",
   "main": "./bin/cordlr",
   "bin": {
-    "cordlr": "./bin/cordlr"
+    "cordlr": "./bin/cordlr start"
   },
   "dependencies": {
     "discord.js": "^11.1.0",
     "log-cb": "^0.2.1",
     "minimist": "^1.2.0",
     "resolve": "^1.3.3",
-    "spawn-args": "^0.2.0"
+    "spawn-args": "^0.2.0",
+    "yargs": "^8.0.2"
   },
   "engines": {
     "node": ">=6"
@@ -28,7 +29,7 @@
   },
   "scripts": {
     "test": "eslint 'bin/**/*.js'",
-    "start": "./bin/cordlr"
+    "start": "./bin/cordlr start"
   },
   "files": [
     "bin"
