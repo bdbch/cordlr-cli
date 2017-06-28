@@ -9,6 +9,7 @@
     "cordlr": "./bin/cordlr start"
   },
   "dependencies": {
+    "cordlr-plugin": "~0.0.6",
     "discord.js": "^11.1.0",
     "log-cb": "^0.2.1",
     "minimist": "^1.2.0",
