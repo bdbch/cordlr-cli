@@ -8,43 +8,56 @@ const Start = require('./methods/start')
 
 // CLI Data
 require('yargs') // eslint-disable-line
-  .usage('$0 [command, [options, [values]]]')
   .command({
     command: 'start',
     aliases: ['s'],
-    desc: 'Start the bot',
-    builder: (yargs) => {
-      yargs.options({
-        'prefix': {
-          alias: 'x',
-          describe: 'Prefix to trigger commands',
-          type: 'string'
-        },
-        'token': {
-          alias: 't',
-          describe: 'Discord API Token',
-          type: 'string'
-        },
-        'plugins': {
-          alias: 'p',
-          describe: 'Array of plugins to load',
-          type: 'array'
+    description: 'Start the Discord Bot',
+    handler: (argv) => {
+      return new Start()
+    }
+  })
+  .command({
+    command: 'update',
+    description: 'Update all installed Cordlr Plugins',
+    aliases: ['u'],
+    handler: (argv) => {
+      console.log('Update')
+      // NPM update Wrapper goes here....
+      // TODO: Make the wrapper
+    }
+  })
+  .command({
+    command: 'install',
+    description: 'Install and Add new Cordlr Plugin(s)',
+    aliases: ['i'],
+    handler: (argv) => {
+      argv._.forEach((a) => {
+        if (a !== 'install') {
+          console.log(a)
+          // NPM Install Wrapper goes here...
+          // TODO: Make the wrapper
         }
       })
-    },
-    handler: (argv) => {
-      if (argv) return new Start({token: argv.token, prefix: argv.prefix})
     }
   })
   .command({
     command: 'version',
-    desc: 'Show package version',
+    description: 'Show package version',
+    aliases: ['v'],
     handler: (argv) => {
-      if (argv) return new Version()
+      return new Version()
     }
   })
-  .example('$0 start -t <token> -p <plugins> -x <prefix>')
+  .updateStrings({
+    'Commands:': 'Cordlr Bot Commands:\n'
+  })
+  .recommendCommands()
+  .demandCommand(1, 'You need at least one command before moving on')
+  .usage('Cordlr Discord Bot - CLI\nUsage: $0 [command]')
+  .example('$0 start')
+  .example('$0 install [plugins]')
+  .example('$0 update')
   .example('$0 version')
-  .help('help')
+  .help('help', true) .alias('h', 'help')
   .argv
 
