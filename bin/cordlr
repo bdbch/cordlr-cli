@@ -1,6 +1,12 @@
 #!/usr/bin/env node
+const exec = require('child_process').exec
+
 const Version = require('./methods/version')
 const Start = require('./methods/start')
+
+const dependencies = require(process.cwd() + '/package.json').dependencies
+const config = require(process.cwd() + '/cordlr.json')
+
 
 /**
  * Create bot using command line.
@@ -21,9 +27,14 @@ require('yargs') // eslint-disable-line
     description: 'Update all installed Cordlr Plugins',
     aliases: ['u'],
     handler: (argv) => {
-      console.log('Update')
-      // NPM update Wrapper goes here....
-      // TODO: Make the wrapper
+      // see if plugins in config file exist in package.json
+      // as a depencency, then update that package.
+      for (const p of config.plugins) {
+        if (p in dependencies) {
+          console.log('updating', p)
+          exec(`npm update ${p}`, {cwd: process.cwd()}, (err) => { if (err) console.error(err) })
+        }
+      }
     }
   })
   .command({
@@ -31,13 +42,18 @@ require('yargs') // eslint-disable-line
     description: 'Install and Add new Cordlr Plugin(s)',
     aliases: ['i'],
     handler: (argv) => {
+      let plugins = [] // Temp list of command arguments
+
+      // Get all command arguments
       argv._.forEach((a) => {
         if (a !== 'install') {
-          console.log(a)
-          // NPM Install Wrapper goes here...
-          // TODO: Make the wrapper
+          console.log('installing', a)
+          plugins.push(a)
         }
       })
+      // Execute the npm install command with given arguments
+      exec(`npm install ${plugins.join(' ')}`, {cwd: process.cwd()}, (err) => { if (err) console.error(err) })
+      plugins = [] // Reset the temp list of command arguments
     }
   })
   .command({
