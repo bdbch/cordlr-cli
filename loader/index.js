@@ -6,26 +6,20 @@ const MessageHandler = require('./message-handler')
  * The default loader for cordlr
  */
 
-class CordlrLoader {
+module.exports = class CordlrLoader {
   constructor (bot, config = {}) {
     // Assign Default Values
     this.bot = bot
     this.config = config
 
-    // Init PluginLoader
-    this.PluginLoader = new PluginLoader(config)
-
-    // Init Scheduler
-    this.Scheduler = new Scheduler(config)
-
-    // Init Message Handler
-    this.MessageHandler = new MessageHandler(config)
+    this.PluginLoader = new PluginLoader(config) // Init PluginLoader
+    this.Scheduler = new Scheduler(config) // Init Scheduler
+    this.MessageHandler = new MessageHandler(config) // Init Message Handler
 
     // Let the PluginLoader get all his stuff right
-    this.PluginLoader.loadPlugins()
-    this.PluginLoader.registerPluginClasses(this)
-    this.PluginLoader.getPluginData()
-    this.PluginLoader.validatePlugins()
+    this.PluginLoader.loadPlugins() // Load all plugins from Cordlr.js
+    this.PluginLoader.registerPluginClasses(this) // Add plugins to "this" object
+    this.PluginLoader.getPluginData() // Get plugin name, description and command
 
     this.bot.login(this.config.token)
       .then(() => this.bot.emit('loaded'), e => {})
@@ -38,5 +32,3 @@ class CordlrLoader {
     return this.bot
   }
 }
-
-module.exports = CordlrLoader
