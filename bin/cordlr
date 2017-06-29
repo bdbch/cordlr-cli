@@ -1,34 +1,79 @@
 #!/usr/bin/env node
-const minimist = require('minimist')
-const Help = require('./methods/help')
+const exec = require('child_process').exec
+
 const Version = require('./methods/version')
 const Start = require('./methods/start')
+
+const dependencies = require(process.cwd() + '/package.json').dependencies
+const config = require(process.cwd() + '/cordlr.json')
+
 
 /**
  * Create bot using command line.
  **/
 
-// CLI data
-const flags = minimist(process.argv.slice(2), {
-  alias: {
-    prefix: 'x',
-    help: 'h',
-    version: 'v',
-    plugins: ['p', 'plugin'],
-    token: 't'
-  }
-})
+// CLI Data
+require('yargs') // eslint-disable-line
+  .command({
+    command: 'start',
+    aliases: ['s'],
+    description: 'Start the Discord Bot',
+    handler: (argv) => {
+      return new Start()
+    }
+  })
+  .command({
+    command: 'update',
+    description: 'Update all installed Cordlr Plugins',
+    aliases: ['u'],
+    handler: (argv) => {
+      // see if plugins in config file exist in package.json
+      // as a depencency, then update that package.
+      for (const p of config.plugins) {
+        if (p in dependencies) {
+          console.log('updating', p)
+          exec(`npm update ${p}`, {cwd: process.cwd()}, (err) => { if (err) console.error(err) })
+        }
+      }
+    }
+  })
+  .command({
+    command: 'install',
+    description: 'Install and Add new Cordlr Plugin(s)',
+    aliases: ['i'],
+    handler: (argv) => {
+      let plugins = [] // Temp list of command arguments
 
-const main = () => {
-  // --help, -h
-  if (flags.help) return new Help()
+      // Get all command arguments
+      argv._.forEach((a) => {
+        if (a !== 'install') {
+          console.log('installing', a)
+          plugins.push(a)
+        }
+      })
+      // Execute the npm install command with given arguments
+      exec(`npm install ${plugins.join(' ')}`, {cwd: process.cwd()}, (err) => { if (err) console.error(err) })
+      plugins = [] // Reset the temp list of command arguments
+    }
+  })
+  .command({
+    command: 'version',
+    description: 'Show package version',
+    aliases: ['v'],
+    handler: (argv) => {
+      return new Version()
+    }
+  })
+  .updateStrings({
+    'Commands:': 'Cordlr Bot Commands:\n'
+  })
+  .recommendCommands()
+  .demandCommand(1, 'You need at least one command before moving on')
+  .usage('Cordlr Discord Bot - CLI\nUsage: $0 [command]')
+  .example('$0 start')
+  .example('$0 install [plugins]')
+  .example('$0 update')
+  .example('$0 version')
+  .help('help', true) .alias('h', 'help')
+  .argv
 
-  // --version, -v
-  if (flags.version) return new Version()
-
-  // otherwise, start it!
-  return new Start(flags)
-}
-
-// Start CLI
-main()

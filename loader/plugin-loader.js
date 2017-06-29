@@ -1,5 +1,4 @@
 const resolve = require('resolve')
-const helpPlugin = require('./plugins/help.js')
 
 module.exports = class PluginLoader {
   constructor (config) {
@@ -37,8 +36,6 @@ module.exports = class PluginLoader {
 
       return plugins
     }, [])
-
-    this.loadedPlugins.unshift(helpPlugin)
   }
 
   registerPluginClasses (cordlrObject) {
