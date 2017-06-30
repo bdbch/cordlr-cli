@@ -17,9 +17,7 @@ module.exports = class CordlrLoader {
     this.MessageHandler = new MessageHandler(config) // Init Message Handler
 
     // Let the PluginLoader get all his stuff right
-    this.PluginLoader.loadPlugins() // Load all plugins from Cordlr.js
-    this.PluginLoader.registerPluginClasses(this) // Add plugins to "this" object
-    this.PluginLoader.getPluginData() // Get plugin name, description and command
+    this.PluginLoader.loadPlugins(this) // Load all plugins from Cordlr.js
 
     this.bot.login(this.config.token)
       .then(() => this.bot.emit('loaded'), e => {})

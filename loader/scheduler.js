@@ -5,8 +5,8 @@ module.exports = class Scheduler {
   }
 
   addScheduledCommand (command) {
-    this.scheduledCommands.push(command)
     if (!this.scheduleTimer) {
+      this.scheduledCommands.push(command)
       this.runScheduledCommand()
     }
   }
