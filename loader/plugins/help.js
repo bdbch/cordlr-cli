@@ -4,7 +4,7 @@ module.exports = class HelpPlugin extends CordlrPlugin {
   constructor (bot, config) {
     super(bot, config)
 
-    this.name = 'Help'
+    this.name = 'Cordlr Core - Help'
     this.description = 'Lists all commands with usage info and descriptions'
 
     this.commands = {

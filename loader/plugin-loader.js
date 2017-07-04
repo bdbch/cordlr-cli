@@ -1,5 +1,9 @@
 const resolve = require('resolve')
-const helpPlugin = require('./plugins/help.js')
+
+const corePlugins = [
+  require('./plugins/help.js'),
+  require('./plugins/prune.js')
+]
 
 module.exports = class PluginLoader {
   constructor (config) {
@@ -42,7 +46,9 @@ module.exports = class PluginLoader {
 
   loadPlugins (cordlrObject) {
     // Load Core Plugins First
-    this.registerPluginClasses(helpPlugin, cordlrObject)
+    for (let i = 0; i < corePlugins.length; i++) {
+      this.registerPluginClasses(corePlugins[i], cordlrObject)
+    }
 
     // Get plugin paths
     const pluginPaths = this.getPluginPaths()
