@@ -5,11 +5,10 @@ module.exports = class Scheduler {
   }
 
   addScheduledCommand (command) {
-    this.scheduledCommands.push(command)
-  }
-
-  getTimer () {
-    return this.scheduleTimer
+    if (!this.scheduleTimer) {
+      this.scheduledCommands.push(command)
+      this.runScheduledCommand()
+    }
   }
 
   runScheduledCommand () {
@@ -21,15 +20,19 @@ module.exports = class Scheduler {
         nextCommand.args.flags
       )
       this.scheduledCommands.splice(0, 1)
-    } else {
-      clearInterval(this.scheduleTimer)
-      this.scheduleTimer = false
+
+      this.createTimer()
     }
+  }
+
+  resetTimer () {
+    clearInterval(this.scheduleTimer)
+    this.scheduleTimer = false
   }
 
   createTimer () {
     this.scheduleTimer = setInterval(() => {
-      this.runScheduledCommand()
-    }, 150)
+      this.resetTimer()
+    }, 1500)
   }
 }

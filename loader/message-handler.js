@@ -33,10 +33,6 @@ module.exports = class MessageHandler {
               flags: flags
             }
           })
-
-          if (!Scheduler.getTimer()) {
-            Scheduler.createTimer()
-          }
         } else {
           message.author.send(`Sorry, but you are not allowed to run the command ** ${command} **`)
         }

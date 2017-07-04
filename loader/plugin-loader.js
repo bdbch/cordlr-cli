@@ -1,111 +1,97 @@
 const resolve = require('resolve')
+const helpPlugin = require('./plugins/help.js')
 
 module.exports = class PluginLoader {
   constructor (config) {
     this.config = config
-    this.loadedPlugins = {}
-    this.pluginPaths = this.getPluginPaths()
+    this.loadedPlugins = [] // List of loaded plugins
 
-    this.resolveOpts = {
-      baseDir: process.cwd(),
-      paths: [ process.cwd() + '/plugins', process.cwd() + '/node_modules' ]
-    }
+    this.pluginCommands = [] // List of all plugin commands
+    this.pluginData = [] // List of all plugin data
   }
 
+  // Get plugin path from cordlr.json file
   getPluginPaths () {
     let pluginPaths = this.config.plugins || []
 
-    if (!Array.isArray(pluginPaths)) {
-      pluginPaths = [pluginPaths]
-    }
+    if (!Array.isArray(pluginPaths)) pluginPaths = [pluginPaths]
 
     return pluginPaths
   }
 
-  loadPlugins () {
-    this.loadedPlugins = this.pluginPaths.reduce((plugins, pluginPath) => {
-      const currentlyLoadedPlugin = require(resolve.sync(pluginPath, this.resolveOpts))
+  registerPluginClasses (Plugin, cordlrObject) {
+    const pluginClass = new Plugin(this.bot, this.config, cordlrObject)
 
-      if (!Array.isArray(currentlyLoadedPlugin)) {
-        plugins.push(currentlyLoadedPlugin)
-      } else {
-        for (const subPlugin of currentlyLoadedPlugin) {
-          plugins.push(subPlugin)
-        }
-      }
+    if (pluginClass) {
+      // Get Plugin commands
+      this.pluginCommands.push(pluginClass.commands || [])
+      // Get Plugin Name, Description and commands
+      this.pluginData.push({
+        'name': pluginClass.name || '',
+        'description': pluginClass.description || '',
+        'commands': pluginClass.commands || {}
+      })
 
-      return plugins
-    }, [])
+      console.log('\n--- CORDLR HAS LOADED A PLUGIN ---')
+      console.log(`Plugin Name:  ${pluginClass.name}`)
+      console.log(`Plugin Description:\n${pluginClass.description}\n`)
+
+      this.loadedPlugins.push(pluginClass)
+    }
   }
 
-  registerPluginClasses (cordlrObject) {
-    this.registeredPlugins = this.loadedPlugins.map((Plugin) => {
-      const pluginClass = new Plugin(this.bot, this.config, cordlrObject)
+  loadPlugins (cordlrObject) {
+    // Load Core Plugins First
+    this.registerPluginClasses(helpPlugin, cordlrObject)
 
-      if (pluginClass) {
-        console.log('\n--- CORDLR HAS LOADED A PLUGIN ---')
-        console.log(`Plugin Name:  ${pluginClass.name}`)
-        console.log(`Plugin Description:\n${pluginClass.description}\n`)
-        return pluginClass
-      }
-    }, {})
-  }
+    // Get plugin paths
+    const pluginPaths = this.getPluginPaths()
 
-  getPluginData () {
-    const pluginData = this.registeredPlugins.map((plugin) => {
-      return {
-        'name': plugin.name || '',
-        'description': plugin.description || '',
-        'commands': plugin.commands || {}
-      }
-    })
-
-    const pluginCommands = pluginData.map((plugin) => {
-      return plugin.commands || []
-    })
-
-    for (const plugin of this.registeredPlugins) {
-      // HOOK: Plugin Data
-      if (plugin.hooks && plugin.hooks.pluginData && typeof plugin[plugin.hooks.pluginData] === 'function') {
-        plugin[plugin.hooks.pluginData](pluginData)
-      }
-
-      // HOOK: Plugin Commands
-      if (plugin.hooks && plugin.hooks.pluginCommands && typeof plugin[plugin.hooks.pluginCommands] === 'function') {
-        plugin[plugin.hooks.pluginCommands](pluginCommands)
-      }
-
-      plugin.pluginData = pluginData
+    // Resolve Sync Options
+    const resolveOpts = {
+      baseDir: process.cwd(),
+      paths: [process.cwd() + '/plugins', process.cwd() + '/node_modules']
     }
 
-    this.pluginData = pluginData
+    // Load and Initiate plugins
+    pluginPaths.map((pluginPath) => {
+      const plugin = require(resolve.sync(pluginPath, resolveOpts))
+      this.registerPluginClasses(plugin, cordlrObject)
+    })
+
+    // Initiate hooks
+    this.setHookData()
   }
 
-  validatePlugins () {
-    if (!this.registeredPlugins.length) {
-      this.bot.emit('error', new Error('No plugins loaded - please add plugins to Cordlr!'))
+  setHookData () {
+    // Check if plugin has a hook method (pluginData | pluginCommands)
+    // Used by plugins/help.js (core-plugin)
+    for (const plugin of this.loadedPlugins) {
+      if (plugin.hooks) {
+        // HOOK: Plugin Data
+        if (plugin.hooks.pluginData && typeof plugin[plugin.hooks.pluginData] === 'function') {
+          plugin[plugin.hooks.pluginData](this.pluginData)
+        }
+
+        // HOOK: Plugin Commands
+        if (plugin.hooks.pluginCommands && typeof plugin[plugin.hooks.pluginCommands] === 'function') {
+          plugin[plugin.hooks.pluginCommands](this.pluginCommands)
+        }
+      }
     }
   }
 
   getPluginCommand (requestedCommand) {
-    for (const plugin of this.registeredPlugins) {
-      for (const command in plugin.commands) {
-        let permissions = []
-        let description = ''
-        if (plugin.commands[command].permissions) {
-          permissions = plugin.commands[command].permissions
-        }
-        if (plugin.commands[command].description) {
-          description = plugin.commands[command].description
-        }
+    for (const plugin of this.loadedPlugins) {
+      if (requestedCommand in plugin.commands) {
+        const permissions = plugin.commands[requestedCommand].permissions || []
+        const description = plugin.commands[requestedCommand].description || ''
 
-        if (requestedCommand === command) {
-          return {
-            plugin: plugin,
-            command: command,
-            permissions: permissions,
-            description: description
-          }
+        return {
+          plugin: plugin,
+          command: requestedCommand,
+          permissions: permissions,
+          description: description
         }
       }
     }

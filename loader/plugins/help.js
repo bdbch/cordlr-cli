@@ -1,6 +1,6 @@
 const CordlrPlugin = require('cordlr-plugin')
 
-class HelpPlugin extends CordlrPlugin {
+module.exports = class HelpPlugin extends CordlrPlugin {
   constructor (bot, config) {
     super(bot, config)
 
@@ -32,19 +32,11 @@ class HelpPlugin extends CordlrPlugin {
     const fields = []
     this.pluginCommands.forEach((plugin) => {
       for (const command in plugin) {
-        let usage = plugin[command].usage
-        let description = plugin[command].description
-
-        if (!usage) {
-          usage = ''
-        }
-
-        if (!description) {
-          description = 'No description added'
-        }
+        const usage = plugin[command].usage || ''
+        const description = plugin[command].description || 'No description added'
 
         fields.push({
-          name: this.config.prefix + command + ' ' + usage,
+          name: `${this.config.prefix}${command} ${usage}`,
           value: description
         })
       }
@@ -75,5 +67,3 @@ class HelpPlugin extends CordlrPlugin {
     return pluginData
   }
 }
-
-module.exports = HelpPlugin
