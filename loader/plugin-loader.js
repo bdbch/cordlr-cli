@@ -1,8 +1,8 @@
 const resolve = require('resolve')
 
 const corePlugins = [
-  require('./plugins/stats.js'),
   require('./plugins/help.js'),
+  require('./plugins/stats.js'),
   require('./plugins/prune.js')
 ]
 
