@@ -1,6 +1,7 @@
 const resolve = require('resolve')
 
 const corePlugins = [
+  require('./plugins/stats.js'),
   require('./plugins/help.js'),
   require('./plugins/prune.js')
 ]
@@ -24,7 +25,7 @@ module.exports = class PluginLoader {
   }
 
   registerPluginClasses (Plugin, cordlrObject) {
-    const pluginClass = new Plugin(this.bot, this.config, cordlrObject)
+    const pluginClass = new Plugin(cordlrObject, this.config)
 
     if (pluginClass) {
       // Get Plugin commands

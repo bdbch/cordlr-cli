@@ -20,13 +20,19 @@ module.exports = class HelpPlugin extends CordlrPlugin {
   }
 
   pruneMessages (message, args, flags) {
+    message.delete()
+    
     if (args[0] && typeof args[0] === 'number') {
       const channel = message.channel
-      const messages = channel.messages
-      console.log(messages.array())
+      channel.fetchMessages({
+        limit: args[0]
+      }).then((messages) => {
+        for (message of messages) {
+          message[1].delete()
+        }
+      })
     } else {
       this.sendInfo(message, 'Please add a number for pruning messages', 'Error while pruning', null, 'error')
     }
-    console.log(args)
   }
 }
