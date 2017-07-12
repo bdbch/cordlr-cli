@@ -27,12 +27,16 @@ module.exports = class HelpPlugin extends CordlrPlugin {
       channel.fetchMessages({
         limit: args[0]
       }).then((messages) => {
-        for (message of messages) {
-          message[1].delete()
-        }
+        this.deleteMessages(messages)
       })
     } else {
       this.sendInfo(message, 'Please add a number for pruning messages', 'Error while pruning', null, 'error')
+    }
+  }
+
+  deleteMessages (messages) {
+    for (const message of messages) {
+      message[1].delete()
     }
   }
 }
