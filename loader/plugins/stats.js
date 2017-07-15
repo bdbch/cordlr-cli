@@ -23,8 +23,6 @@ module.exports = class StatsPlugin extends CordlrPlugin {
     }
   }
 
-
-
   showStats (message, args, flags) {
     let statMessage = ``
     statMessage += `-----\n\n**Server ${ this.getServerName(message) } Informations**\n`

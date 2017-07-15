@@ -24,6 +24,13 @@ module.exports = class HelpPlugin extends CordlrPlugin {
     
     if (args[0] && typeof args[0] === 'number') {
       const channel = message.channel
+      const numOfMessagesToPrune = args[0]
+
+      // Set Limit for Prune Messages
+      if (numOfMessagesToPrune > 50) {
+        numOfMessagesToPrune = 50
+      }
+
       channel.fetchMessages({
         limit: args[0]
       }).then((messages) => {
@@ -37,6 +44,7 @@ module.exports = class HelpPlugin extends CordlrPlugin {
   deleteMessages (messages) {
     for (const message of messages) {
       message[1].delete()
+        .catch(console.error)
     }
   }
 }
