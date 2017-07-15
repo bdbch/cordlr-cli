@@ -19,12 +19,12 @@ module.exports = class HelpPlugin extends CordlrPlugin {
     }
   }
 
-  pruneMessages (message, args, flags) {
+  pruneMessages (message, args) {
     message.delete()
     
     if (args[0] && typeof args[0] === 'number') {
       const channel = message.channel
-      const numOfMessagesToPrune = args[0]
+      let numOfMessagesToPrune = args[0]
 
       // Set Limit for Prune Messages
       if (numOfMessagesToPrune > 50) {

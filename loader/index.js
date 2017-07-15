@@ -20,7 +20,7 @@ module.exports = class CordlrLoader {
     this.PluginLoader.loadPlugins(this) // Load all plugins from Cordlr.js
 
     this.bot.login(this.config.token)
-      .then(() => this.bot.emit('loaded'), e => {})
+      .then(() => this.bot.emit('loaded'))
 
     // Send received messages to the Message Handler
     this.bot.on('message', (message) => {
