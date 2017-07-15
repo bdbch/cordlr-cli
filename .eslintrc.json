@@ -1,11 +1,35 @@
 {
-  "extends": "standard",
-  "rules": {
-    "indent": ["error", 2, {"SwitchCase": 1}],
-    "space-before-function-paren": ["error"],
-    "no-multiple-empty-lines": ["error", {"max": 1}],
-    "semi": ["error", "never"],
-    "prefer-const": ["error", {"destructuring": "all"}],
-    "no-var": "error"
-  }
+    "env": {
+        "es6": true,
+        "node": true
+    },
+    "extends": "eslint:recommended",
+    "parserOptions": {
+        "sourceType": "module"
+    },
+    "rules": {
+        "indent": [
+            "error",
+            2
+        ],
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "semi": [
+            "error",
+            "never"
+        ],
+        "no-multiple-empty-lines": [
+            "error", {
+                "max": 1
+            }
+        ],
+        "no-console": [
+            "error",
+            {
+                "allow": ["log", "warn", "error"]
+            }
+        ]
+    }
 }

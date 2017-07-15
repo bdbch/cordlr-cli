@@ -1,5 +1,5 @@
 module.exports = class Scheduler {
-  constructor (config) {
+  constructor () {
     this.scheduledCommands = []
     this.scheduleTimer = false
   }
