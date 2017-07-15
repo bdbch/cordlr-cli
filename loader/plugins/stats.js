@@ -23,7 +23,7 @@ module.exports = class StatsPlugin extends CordlrPlugin {
     }
   }
 
-  showStats (message, args) {
+  showStats (message) {
     let statMessage = ''
     statMessage += `-----\n\n**Server ${ this.getServerName(message) } Informations**\n`
     statMessage += `Registered members: ${ this.getUserCount(message) } Users\n`
@@ -37,7 +37,7 @@ module.exports = class StatsPlugin extends CordlrPlugin {
     this.sendInfo(message, statMessage, 'Stats about this Discord Server', null, 'warning')
   }
 
-  showUsercount (message, args) {
+  showUsercount (message) {
     const userMessage = `Currently there are ${ this.getUserCount(message) } registered Users on ${ this.getServerName(message) }`
     this.sendInfo(message, userMessage, 'Registered Users', null, 'warning')
   }

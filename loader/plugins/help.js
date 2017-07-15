@@ -28,7 +28,7 @@ module.exports = class HelpPlugin extends CordlrPlugin {
     }
   }
 
-  showHelp (message, args) {
+  showHelp (message) {
     const fields = []
     this.pluginCommands.forEach((plugin) => {
       for (const command in plugin) {
@@ -45,7 +45,7 @@ module.exports = class HelpPlugin extends CordlrPlugin {
     this.sendFields(message, fields, 'Cordlr Help:')
   }
 
-  showPlugins (message, args) {
+  showPlugins (message) {
     const fields = []
     for (const plugin of this.pluginData) {
       fields.push({
