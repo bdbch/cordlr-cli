@@ -29,7 +29,7 @@
     "standard": "^10.0.2"
   },
   "scripts": {
-    "test": "eslint 'bin/**/*.js'",
+    "test": "eslint './**/*.js'",
     "start": "./bin/cordlr start"
   },
   "files": [
