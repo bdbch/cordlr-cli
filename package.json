@@ -6,7 +6,7 @@
   "repository": "devcord/cordlr-cli",
   "main": "./bin/cordlr",
   "bin": {
-    "cordlr": "./bin/cordlr start"
+    "cordlr": "./bin/cordlr"
   },
   "dependencies": {
     "cordlr-plugin": "~0.0.6",
