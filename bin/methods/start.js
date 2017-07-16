@@ -61,4 +61,9 @@ module.exports = class Cordlr {
     this.getConfiguration()
     this.start()
   }
+
+  stop () {
+    this.bot.destroy()
+    process.exit(1)
+  }
 }
