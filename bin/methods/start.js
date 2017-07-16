@@ -1,5 +1,6 @@
 const { Client } = require('discord.js')
 const path = require('path')
+const fs = require('fs')
 
 module.exports = class Cordlr {
   constructor (flags) {
@@ -8,8 +9,14 @@ module.exports = class Cordlr {
     // Get path to "cordlr config" file
     this.configPath = path.resolve(process.cwd(), 'cordlr.json')
 
+    this.getConfiguration()
+    this.start()
+  }
+
+  getConfiguration () {
     try {
-      this.config = require(this.configPath)
+      const configContent = JSON.parse(fs.readFileSync(this.configPath, 'utf8'))
+      this.config = configContent
     } catch (e) {
       if (e.code === 'MODULE_NOT_FOUND') this.config = {}
       else return console.log(e)
@@ -33,18 +40,30 @@ module.exports = class Cordlr {
         }
       }
     }
-
-    this.start()
   }
 
   start () {
     // Initiate the Bot
-    const bot = new Client()
-    bot.on('error', (e) => console.log(e)) // console.log on error
-    bot.on('ready', () => console.log('Loaded successfully'))
+    this.bot = new Client()
+    this.bot.on('error', (e) => console.log(e)) // console.log on error
+    this.bot.on('ready', () => console.log('Loaded successfully'))
+
+    // Add this as binary to bot object
+    this.bot.bin = this
 
     // Initiate the Loader
     const Loader = require('../../loader/index')
-    return new Loader(bot, this.config)
+    return new Loader(this.bot, this.config)
+  }
+
+  restart () {
+    this.bot.destroy()
+    this.getConfiguration()
+    this.start()
+  }
+
+  stop () {
+    this.bot.destroy()
+    process.exit(1)
   }
 }

@@ -7,7 +7,6 @@ const Start = require('./methods/start')
 const dependencies = require(process.cwd() + '/package.json').dependencies
 const config = require(process.cwd() + '/cordlr.json')
 
-
 /**
  * Create bot using command line.
  **/
@@ -18,7 +17,7 @@ require('yargs') // eslint-disable-line
     command: 'start',
     aliases: ['s'],
     description: 'Start the Discord Bot',
-    handler: (argv) => {
+    handler: () => {
       return new Start()
     }
   })
@@ -26,7 +25,7 @@ require('yargs') // eslint-disable-line
     command: 'update',
     description: 'Update all installed Cordlr Plugins',
     aliases: ['u'],
-    handler: (argv) => {
+    handler: () => {
       // see if plugins in config file exist in package.json
       // as a depencency, then update that package.
       for (const p of config.plugins) {
@@ -60,7 +59,7 @@ require('yargs') // eslint-disable-line
     command: 'version',
     description: 'Show package version',
     aliases: ['v'],
-    handler: (argv) => {
+    handler: () => {
       return new Version()
     }
   })
