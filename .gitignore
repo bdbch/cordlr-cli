@@ -3,3 +3,5 @@ log
 *.pid
 npm-debug.log
 .vscode
+devserver/cordlr.json
+devserver/plugins/*/
