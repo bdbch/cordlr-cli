@@ -1,11 +1,11 @@
 const CordlrPlugin = require('cordlr-plugin')
 
-module.exports = class RestartPlugin extends CordlrPlugin {
+module.exports = class SystemPlugin extends CordlrPlugin {
   constructor (bot, config) {
     super(bot, config)
 
-    this.name = 'Cordlr Core - Restart'
-    this.description = 'Cordlr Core plugin for restarting and updating the bot'
+    this.name = 'Cordlr Core - System'
+    this.description = 'Cordlr Core plugin for handling the bot (restart, stop, updating)'
 
     this.commands = {
       'restart': {
@@ -20,6 +20,14 @@ module.exports = class RestartPlugin extends CordlrPlugin {
         'usage': '',
         'function': 'stopBot',
         'description': 'Stops the current bot instance',
+        'permissions': [
+          'ADMINISTRATOR'
+        ]
+      },
+      'update': {
+        'usage': '',
+        'function': 'updateBot',
+        'description': 'Updates the current bot instance',
         'permissions': [
           'ADMINISTRATOR'
         ]
@@ -40,6 +48,14 @@ module.exports = class RestartPlugin extends CordlrPlugin {
     message.delete()
       .then(() => {
         this.bot.bot.bin.stop()
+      })
+  }
+
+  updateBot (message) {
+    this.sendInfo(message, 'Updating...', 'Cordlr', null, 'error')
+    message.delete()
+      .then(() => {
+        this.bot.bot.bin.update()
       })
   }
 }
