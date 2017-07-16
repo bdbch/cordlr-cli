@@ -2,6 +2,7 @@ node_modules
 log
 *.pid
 npm-debug.log
-.vscode
+.vscode/**/*
+!.vscode/launch.json
 devserver/cordlr.json
 devserver/plugins/*/
