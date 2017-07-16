@@ -2,6 +2,8 @@ const { Client } = require('discord.js')
 const path = require('path')
 const fs = require('fs')
 
+const updateBotDependencies = require('./update.js').updateBotDependencies
+
 module.exports = class Cordlr {
   constructor (flags) {
     this.flags = flags || ''
@@ -65,5 +67,17 @@ module.exports = class Cordlr {
   stop () {
     this.bot.destroy()
     process.exit(1)
+  }
+
+  update () {
+    const dependencies = require(process.cwd() + '/package.json').dependencies
+    const config = this.config
+
+    this.bot.destroy()
+    this.getConfiguration()
+
+    updateBotDependencies(config, dependencies)
+
+    this.start()
   }
 }

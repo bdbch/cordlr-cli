@@ -23,6 +23,14 @@ module.exports = class RestartPlugin extends CordlrPlugin {
         'permissions': [
           'ADMINISTRATOR'
         ]
+      },
+      'update': {
+        'usage': '',
+        'function': 'updateBot',
+        'description': 'Updates the current bot instance',
+        'permissions': [
+          'ADMINISTRATOR'
+        ]
       }
     }
   }
@@ -40,6 +48,14 @@ module.exports = class RestartPlugin extends CordlrPlugin {
     message.delete()
       .then(() => {
         this.bot.bot.bin.stop()
+      })
+  }
+
+  updateBot (message) {
+    this.sendInfo(message, 'Updating...', 'Cordlr', null, 'error')
+    message.delete()
+      .then(() => {
+        this.bot.bot.bin.update()
       })
   }
 }

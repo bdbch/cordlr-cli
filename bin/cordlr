@@ -1,8 +1,7 @@
 #!/usr/bin/env node
-const exec = require('child_process').exec
-
 const Version = require('./methods/version')
 const Start = require('./methods/start')
+const updateBotDependencies = require('./methods/update.js').updateBotDependencies
 
 const dependencies = require(process.cwd() + '/package.json').dependencies
 const config = require(process.cwd() + '/cordlr.json')
@@ -28,12 +27,7 @@ require('yargs') // eslint-disable-line
     handler: () => {
       // see if plugins in config file exist in package.json
       // as a depencency, then update that package.
-      for (const p of config.plugins) {
-        if (p in dependencies) {
-          console.log('updating', p)
-          exec(`npm update ${p}`, {cwd: process.cwd()}, (err) => { if (err) console.error(err) })
-        }
-      }
+      updateBotDependencies(config, dependencies)
     }
   })
   .command({
