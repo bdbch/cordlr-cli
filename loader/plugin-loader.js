@@ -2,7 +2,7 @@ const resolve = require('resolve')
 
 const corePlugins = [
   require('./plugins/help.js'),
-  require('./plugins/restart.js'),
+  require('./plugins/system.js'),
   require('./plugins/stats.js'),
   require('./plugins/prune.js')
 ]
