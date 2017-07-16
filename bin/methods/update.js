@@ -1,7 +1,7 @@
 const exec = require('child_process').exec
 
 module.exports = {
-  "updateBotDependencies": function (config, dependencies) {
+  'updateBotDependencies': function (config, dependencies) {
     if (!dependencies)
       dependencies = []
 
