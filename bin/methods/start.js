@@ -1,6 +1,7 @@
 const { Client } = require('discord.js')
 const path = require('path')
 const fs = require('fs')
+const chalk = require('chalk')
 
 const updateBotDependencies = require('./update.js').updateBotDependencies
 
@@ -21,13 +22,13 @@ module.exports = class Cordlr {
       this.config = configContent
     } catch (e) {
       if (e.code === 'MODULE_NOT_FOUND') this.config = {}
-      else return console.log(e)
+      else return console.log(chalk.red(e))
     }
 
     // If Token doesn't exist, return error
     if (!this.config.token) {
       if (process.env.CORDLR_TOKEN) this.config.token = process.env.CORDLR_TOKEN
-      else return console.log('No token specified')
+      else return console.log(chalk.red('No token specified'))
     }
 
     // Set default values if empty
@@ -47,8 +48,8 @@ module.exports = class Cordlr {
   start () {
     // Initiate the Bot
     this.bot = new Client()
-    this.bot.on('error', (e) => console.log(e)) // console.log on error
-    this.bot.on('ready', () => console.log('Loaded successfully'))
+    this.bot.on('error', (e) => console.log(chalk.red(e))) // console.log on error
+    this.bot.on('ready', () => console.log(chalk.bgGreen('Loaded successfully')))
 
     // Add this as binary to bot object
     this.bot.bin = this
