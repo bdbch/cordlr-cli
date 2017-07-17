@@ -1,3 +1,4 @@
+const chalk = require('chalk')
 const resolve = require('resolve')
 
 const corePlugins = [
@@ -38,9 +39,8 @@ module.exports = class PluginLoader {
         'commands': pluginClass.commands || {}
       })
 
-      console.log('\n--- CORDLR HAS LOADED A PLUGIN ---')
-      console.log(`Plugin Name:  ${pluginClass.name}`)
-      console.log(`Plugin Description:\n${pluginClass.description}\n`)
+      console.log(chalk.bgGreen(chalk.black(`\n--- ${pluginClass.name} loaded ---`)))
+      console.log(chalk.white(`${pluginClass.description}\n`))
 
       this.loadedPlugins.push(pluginClass)
     }
@@ -66,6 +66,8 @@ module.exports = class PluginLoader {
       const plugin = require(resolve.sync(pluginPath, resolveOpts))
       this.registerPluginClasses(plugin, cordlrObject)
     })
+
+    console.log(chalk.yellow(`Number of Plugins: ${this.loadedPlugins.length}`))
 
     // Initiate hooks
     this.setHookData()
