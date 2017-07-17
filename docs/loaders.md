@@ -26,16 +26,21 @@ Loaders are simple.  It's a module that exports a function.  This function is ca
 For example:
 
 ```js
-function loader (bot, config) {
-  const pluginPaths = config.plugins || []
-  // ...
+class MyLoader {
+  constructor (bot, config) {
+    this.pluginPaths = config.plugins || []
 
-  bot.on('message', function () {
-    // ...
-  })
-  
-  return bot
+    // more code
+
+    bot.on('message', () => {
+      // more code
+    }
+
+    return bot
+  }
 }
+
+module.exports = MyLoader
 ```
 
 ### Generic usage / modular functionality
@@ -45,9 +50,10 @@ Because loaders are simple functions that are passed objects from [discord.js](h
 ```js
 // Obtain a `Client` object somehow...
 const bot = new Client({ ...options })
+const Loader = require('my-loader')
 
 // Apply the loader
-loader(bot, {
+new Loader(bot, {
   plugins: [ ...paths ],
   // ....
 })

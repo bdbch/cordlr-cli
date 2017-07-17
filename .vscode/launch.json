@@ -1,0 +1,32 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Development Server (internal console)",
+      "program": "${workspaceRoot}/bin/cordlr",
+      "cwd": "${workspaceRoot}/devserver",
+      "console": "internalConsole",
+      "args": [ "start" ]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Development Server (external terminal)",
+      "program": "${workspaceRoot}/bin/cordlr",
+      "cwd": "${workspaceRoot}/devserver",
+      "console": "externalTerminal",
+      "args": [ "start" ]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Development Server (integrated terminal)",
+      "program": "${workspaceRoot}/bin/cordlr",
+      "cwd": "${workspaceRoot}/devserver",
+      "console": "integratedTerminal",
+      "args": [ "start" ]
+    }
+  ]
+}

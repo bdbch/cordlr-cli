@@ -1,50 +1,84 @@
-module.exports = start
-const { writeFile } = require('fs')
-const path = require('path')
-const log = require('log-cb')
 const { Client } = require('discord.js')
+const path = require('path')
+const fs = require('fs')
+const chalk = require('chalk')
 
-function start (flags) {
-  // Load configuration file
-  let config = {}
-  const configPath = path.resolve(process.cwd(), 'package.json')
-  try {
-    config = require(configPath)
-  } catch (e) {
-    if (e.code !== 'MODULE_NOT_FOUND') return log()(e)
+const updateBotDependencies = require('./update.js').updateBotDependencies
+
+module.exports = class Cordlr {
+  constructor (flags) {
+    this.flags = flags || ''
+
+    // Get path to "cordlr config" file
+    this.configPath = path.resolve(process.cwd(), 'cordlr.json')
+
+    this.getConfiguration()
+    this.start()
   }
 
-  // Set defaults
-  if (!config.loader) config.loader = 'cordlr-loader'
-  if (!config.plugins) config.plugins = []
+  getConfiguration () {
+    try {
+      const configContent = JSON.parse(fs.readFileSync(this.configPath, 'utf8'))
+      this.config = configContent
+    } catch (e) {
+      if (e.code === 'MODULE_NOT_FOUND') this.config = {}
+      else return console.log(chalk.red(e))
+    }
 
-  // Add command-line options to config
-  const uneditedConfig = Object.assign({}, config)
-  Object.assign(config, flags)
-  delete config._
-  // add command-line plugins to config (if they weren't there yet)
-  for (const plugin of flags._) {
-    if (!config.plugins.includes(plugin)) {
-      config.plugins.push(plugin)
+    // If Token doesn't exist, return error
+    if (!this.config.token) {
+      if (process.env.CORDLR_TOKEN) this.config.token = process.env.CORDLR_TOKEN
+      else return console.log(chalk.red('No token specified'))
+    }
+
+    // Set default values if empty
+    if (!this.config.plugins) this.config.plugins = this.flags.plugins || []
+    if (!this.config.prefix) this.config.prefix = this.flags.prefix || '!'
+
+    // Add plugin(s) from command-line flags to "cordlr config" file
+    if (this.flags.plugins) {
+      for (const plugin of this.flags.plugins) {
+        if (!this.config.plugins.includes(plugin)) {
+          this.config.plugins.push(plugin)
+        }
+      }
     }
   }
 
-  // Attach method to write config to file
-  config.writeToFile = (property) => new Promise((resolve, reject) => {
-    if (!config[property]) return reject(new Error(`Cannot write property "${property}"`))
-    uneditedConfig[property] = config[property]
-    writeFile(configPath, JSON.stringify(uneditedConfig, null, 2), (err) => {
-      if (err) reject(err)
-      else resolve()
-    })
-  })
+  start () {
+    // Initiate the Bot
+    this.bot = new Client()
+    this.bot.on('error', (e) => console.log(chalk.red(e))) // console.log on error
+    this.bot.on('ready', () => console.log(chalk.bgGreen('Loaded successfully')))
 
-  // Create bot
-  const bot = new Client()
-  bot.on('error', log.err())
-  bot.on('ready', log('Loaded successfully'))
+    // Add this as binary to bot object
+    this.bot.bin = this
 
-  // Load loader
-  const loader = require(config.loader)
-  loader(bot, config)
+    // Initiate the Loader
+    const Loader = require(path.join(__dirname, '../../loader/index'))
+    return new Loader(this.bot, this.config)
+  }
+
+  restart () {
+    this.bot.destroy()
+    this.getConfiguration()
+    this.start()
+  }
+
+  stop () {
+    this.bot.destroy()
+    process.exit(1)
+  }
+
+  update () {
+    const dependencies = require(process.cwd() + '/package.json').dependencies
+    const config = this.config
+
+    this.bot.destroy()
+    this.getConfiguration()
+
+    updateBotDependencies(config, dependencies)
+
+    this.start()
+  }
 }

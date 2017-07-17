@@ -1,4 +1,4 @@
-[![https://img.shields.io/badge/GITTER-join%20chat-green.svg](https://img.shields.io/badge/GITTER-join%20chat-green.svg)](https://gitter.im/Devcord/cordlr)
+[![Join the chat at https://gitter.im/Devcord/cordlr-cli](https://badges.gitter.im/Devcord/cordlr-cli.svg)](https://gitter.im/Devcord/cordlr-cli?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ![cordlr](http://i.imgur.com/GPVoYNk.jpg)
 
@@ -15,8 +15,6 @@ Sounds good? Lets get started!
 * *Recommendation* - [pm2](https://www.npmjs.com/package/pm2) or [Forever](https://www.npmjs.com/package/forever)
 
 ### [Read the Documentation](docs/)
-
-[![Join the chat at https://gitter.im/Devcord/cordlr-cli](https://badges.gitter.im/Devcord/cordlr-cli.svg)](https://gitter.im/Devcord/cordlr-cli?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ## License
 Devcord © [GPLv3](LICENSE)

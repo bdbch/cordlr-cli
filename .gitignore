@@ -1,7 +1,8 @@
 node_modules
-.cordlrrc*
-!.cordlrrc.sample
 log
 *.pid
 npm-debug.log
-config/index.js
+.vscode/**/*
+!.vscode/launch.json
+devserver/cordlr.json
+devserver/plugins/*/
