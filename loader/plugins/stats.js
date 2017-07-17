@@ -25,7 +25,7 @@ module.exports = class StatsPlugin extends CordlrPlugin {
 
   showStats (message) {
     let statMessage = ''
-    statMessage += `-----\n\n**Server ${ this.getServerName(message) } Informations**\n`
+    statMessage += `-----\n\n**Server ${ this.getServerName(message) } Information's**\n`
     statMessage += `Registered members: ${ this.getUserCount(message) } Users\n`
     statMessage += `Server was created at: ${ this.getServerCreationDate(message) }\n`
     statMessage += `Num. of channels: ${ message.guild.channels.array().length }\n`

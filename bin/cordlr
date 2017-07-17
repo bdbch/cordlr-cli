@@ -10,6 +10,10 @@ const config = require(process.cwd() + '/cordlr.json')
 
 /**
  * Create bot using command line.
+ * $ cordlr <action> [...args]
+
+ * Visit the "docs/" on GitHub for more info.
+ * (https://github.com/Devcord/cordlr/tree/master/docs)
  **/
 
 // CLI Data
@@ -28,7 +32,7 @@ require('yargs') // eslint-disable-line
     aliases: ['u'],
     handler: () => {
       // see if plugins in config file exist in package.json
-      // as a depencency, then update that package.
+      // as a dependency, then update that package.
       updateBotDependencies(config, dependencies)
     }
   })
@@ -64,7 +68,7 @@ require('yargs') // eslint-disable-line
   })
   .recommendCommands()
   .demandCommand(1, 'You need at least one command before moving on')
-  .usage('Cordlr Discord Bot - CLI\nUsage: $0 [command]')
+  .usage('Cordlr Discord Bot - CLI\nUsage: $0 <action> [..args]')
   .example('$0 start')
   .example('$0 install [plugins]')
   .example('$0 update')

@@ -30,8 +30,20 @@ module.exports = class PluginLoader {
     const pluginClass = new Plugin(cordlrObject, this.config)
 
     if (pluginClass) {
+      // Check for duplicated commands
+      for (let command in pluginClass.commands) { // If a plugin has multiple commands loop through them.
+        if (this.pluginData.length > 0) { // Only check if there is data to compare with.
+          for (let tempPluginClass of this.pluginData) {
+            if (command in tempPluginClass.commands) {
+              throw new Error(`command duplication: ${command} used in "${pluginClass.name}" and "${tempPluginClass.name}"!`)
+            }
+          }
+        }
+      }
+
       // Get Plugin commands
       this.pluginCommands.push(pluginClass.commands || [])
+
       // Get Plugin Name, Description and commands
       this.pluginData.push({
         'name': pluginClass.name || '',
