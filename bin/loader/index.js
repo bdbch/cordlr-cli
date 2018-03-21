@@ -1,6 +1,6 @@
-const PluginLoader = require('./plugin-loader')
-const Scheduler = require('./scheduler')
-const MessageHandler = require('./message-handler')
+const PluginLoader = require('./lib/plugin-loader')
+const Scheduler = require('./lib/scheduler')
+const MessageHandler = require('./lib/message-handler')
 
 /**
  * The default loader for cordlr
