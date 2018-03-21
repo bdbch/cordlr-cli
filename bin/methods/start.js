@@ -55,8 +55,8 @@ module.exports = class Cordlr {
     this.bot.bin = this
 
     // Initiate the Loader
-    const Loader = require(path.join(__dirname, '../loader/index'))
-    return new Loader(this.bot, this.config)
+    const CordlrBot = require(path.join(__dirname, '../bot'))
+    return new CordlrBot(this.bot, this.config)
   }
 
   restart () {

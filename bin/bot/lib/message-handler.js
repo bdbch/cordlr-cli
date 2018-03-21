@@ -22,20 +22,24 @@ module.exports = class MessageHandler {
       }
 
       const request = PluginLoader.getPluginCommand(command)
-      if (request) {
-        if (message.member.hasPermission(request.permissions)) {
-          Scheduler.addScheduledCommand({
-            'object': request.plugin,
-            'command': request.plugin.commands[request.command].function,
-            'args': {
-              message: message,
-              args: args,
-              flags: flags
-            }
-          })
-        } else {
-          message.author.send(`Sorry, but you are not allowed to run the command ** ${command} **`)
-        }
+      this.addRequestToScheduler(request, message, args, flags, Scheduler)
+    }
+  }
+
+  addRequestToScheduler (request, message, args, flags, Scheduler) {
+    if (request) {
+      if (message.member.hasPermission(request.permissions)) {
+        Scheduler.addScheduledCommand({
+          'object': request.plugin,
+          'command': request.plugin.commands[request.command].function,
+          'args': {
+            message: message,
+            args: args,
+            flags: flags
+          }
+        })
+      } else {
+        message.author.send(`Sorry, but you are not allowed to run the command ** ${command} **`)
       }
     }
   }
