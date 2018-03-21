@@ -22,11 +22,11 @@ module.exports = class MessageHandler {
       }
 
       const request = PluginLoader.getPluginCommand(command)
-      this.addRequestToScheduler(request, message, args, flags, Scheduler)
+      this.addRequestToScheduler(request, message, args, flags, command, Scheduler)
     }
   }
 
-  addRequestToScheduler (request, message, args, flags, Scheduler) {
+  addRequestToScheduler (request, message, args, flags, command, Scheduler) {
     if (request) {
       if (message.member.hasPermission(request.permissions)) {
         Scheduler.addScheduledCommand({
