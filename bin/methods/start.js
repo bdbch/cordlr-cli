@@ -49,7 +49,11 @@ module.exports = class Cordlr {
     // Initiate the Bot
     this.bot = new Client()
     this.bot.on('error', (e) => console.log(chalk.red(e))) // console.log on error
-    this.bot.on('ready', () => console.log(chalk.bgGreen('Loaded successfully')))
+    this.bot.on('ready', () => {
+      console.log(chalk.bgGreen('Loaded successfully'))
+      console.log("\n\n")
+      console.log(chalk.green(`You can now invite the Bot via \nhttps://discordapp.com/api/oauth2/authorize?client_id=${this.bot.user.id}&permissions=0&scope=bot`))
+    })
 
     // Add this as binary to bot object
     this.bot.bin = this
